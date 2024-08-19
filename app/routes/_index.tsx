@@ -51,7 +51,7 @@ export default function Index() {
       <Transition className="w-full h-full justify-center items-center">
         <VStackFull className="text-center xxl:w-[60vw]" gap="gap-[4vh]">
           <Text className="font-cursive boldTextGlow text-col-900 text-stroke-8-900 text-[4.5vh] md:text-[8vh] lg:text-[10vh] text-center animate-slideInRight">
-            Remix, Vite, & Tailwind
+            Movie Database
           </Text>
           <VStackFull className="text-col-100 text-[2vh] sm:text-[2.5vh] md:text-[3vh] textShadow text-center">
             <Text className="text-col-100 animate-slideInLeft">
