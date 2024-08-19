@@ -12,10 +12,11 @@ export default function AnimatedIconButton({
   icon,
   text,
   isActive,
-  iconClassName = "text-[2.5vh]",
+  isDisabled,
+  iconClassName,
   iconRotation = "group-hover:rotate-90",
-  className = `h-[3.5vh] px-[1vh] text-[1.5vh] md:text-[2vh] bg-col-200 text-col-900 text-stroke-8-900
-bg-radial1op75 shadowNarrowTight`,
+  className,
+  buttonSize = "normal",
 }: {
   link?: string;
   onClick?: () => void;
@@ -25,14 +26,33 @@ bg-radial1op75 shadowNarrowTight`,
   iconClassName?: string;
   iconRotation?: string;
   text: string;
+  isDisabled?: boolean;
   isActive?: boolean;
   className?: string;
+  buttonSize?: "small" | "normal";
 }) {
+  const baseClassName = `bg-col-200 hover:bg-col-400 text-col-900 text-stroke-8-900
+bg-radial1op75 shadowNarrowTight border-900-md transition-300`;
+  const smallClassName =
+    "h-[3vh] px-1vh text-[1.6vh] md:text-[1.8vh]  leading-tight";
+  const normalClassName =
+    "h-[3.5vh] px-1vh text-[1.8vh] md:text-[2.2vh] leading-tight";
+  const displayClassName = `${baseClassName} ${
+    buttonSize === "small" ? smallClassName : normalClassName
+  } ${className}`;
+
+  const normalIconClassName = "text-[2.5vh] md:text-[3vh]";
+  const smallIconClassName = "text-[2.5vh] md:text-[2.7vh]";
+  const displayIconClassName = `${
+    buttonSize === "small" ? smallIconClassName : normalIconClassName
+  } ${iconClassName}`;
+
   return (
     <>
       {link ? (
         <NavLink to={link} className="group" target={target}>
-          <motion.div
+          <motion.button
+            disabled={isDisabled}
             whileHover={{
               scale: isActive ? 1 : 1.02,
               transition: { duration: 0.4 },
@@ -43,20 +63,20 @@ bg-radial1op75 shadowNarrowTight`,
             }}
           >
             <HStack
-              className={` hover:cursor-pointer ${className} items-center`}
-              gap="gap-[0.4vh]"
+              className={` hover:cursor-pointer ${displayClassName} items-center`}
+              gap="gap-0.2vh"
             >
               {icon && (
                 <Icon
                   icon={icon}
                   hoverCursor="cursor-pointer"
-                  iconClassName={iconClassName}
+                  iconClassName={displayIconClassName}
                   containerClassName={`${iconRotation} transition-400`}
                 />
               )}
               {text && <Text>{text}</Text>}
             </HStack>
-          </motion.div>
+          </motion.button>
         </NavLink>
       ) : (
         <motion.button
@@ -73,13 +93,14 @@ bg-radial1op75 shadowNarrowTight`,
           type={type}
         >
           <HStack
-            className={` hover:cursor-pointer  ${className} items-center`}
+            className={` hover:cursor-pointer  ${displayClassName} items-center`}
+            gap="gap-0.2vh"
           >
             {icon && (
               <Icon
                 hoverCursor="cursor-pointer"
                 icon={icon}
-                iconClassName={iconClassName}
+                iconClassName={displayIconClassName}
                 containerClassName={`${iconRotation} transition-400`}
               />
             )}

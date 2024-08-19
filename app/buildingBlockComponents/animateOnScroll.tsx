@@ -44,7 +44,7 @@ const AnimatedComponent: React.FC<Props> = ({
   children,
   animation = "slideInY",
   duration = 1,
-  triggerPercent = 0.3,
+  triggerPercent = 0.2,
   xOffset = "40vw",
   yOffset = "20vh",
   zoomInFrom = 0.1,

@@ -17,7 +17,7 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <FlexFull className="justify-center items-center h-[100svh] bg-col-450 bg-radial4op50">
+    <FlexFull className="justify-center items-center h-[100svh] bg-col-450 bg-radial4op50 rounded-none">
       <FallingImages />
       <Transition className="absolute inset-0 w-full h-full justify-center items-center">
         <VStackFull className="text-center xxl:w-[60vw]" gap="gap-[4vh]">
