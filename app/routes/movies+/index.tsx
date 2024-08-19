@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { LoaderFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { NavLink, useLoaderData } from "@remix-run/react";
 import HStackFull from "~/buildingBlockComponents/hStackFull";
 import VStackFull from "~/buildingBlockComponents/vStackFull";
 import ScrollProgressBar from "~/buildingBlockComponents/scrollProgressBar";
@@ -16,6 +16,8 @@ import Flex from "~/buildingBlockComponents/flex";
 import HStack from "~/buildingBlockComponents/hStack";
 import Icon from "~/buildingBlockComponents/icon";
 import Image from "~/buildingBlockComponents/image";
+import AnimatedText from "~/buildingBlockComponents/animatedText";
+import Box from "~/buildingBlockComponents/box";
 
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);
@@ -61,16 +63,22 @@ export default function Index() {
   return (
     <VStackFull className="h-[100svh] overflow-hidden">
       <HStackFull className="fixed inset-0 h-[5svh] justify-between items-center bg-col-880 bg-diagonal3op75 rounded-none z-50 px-1vh">
-        <HStack className="items-center" gap="gap-1.5vh">
-          <Image
-            src="/images/movie-reel-yellow.webp"
-            alt="Movie Reel"
-            className="h-3.5vh rounded-full shadowNarrowLoose"
-          />
-          <h3 className="blockLetters text-yellow-200 text-stroke-6-200 textFogXs">
-            Take Me to the Movies
-          </h3>
-        </HStack>
+        <NavLink to="/">
+          <HStack
+            className="items-center hover:cursor-pointer"
+            gap="gap-1vh sm:gap-1.5vh"
+          >
+            <Box className="rounded-full border-900-md shadowNarrowLooser hover:cursor-pointer">
+              <Image
+                src="/images/movie-reel-yellow.webp"
+                alt="Movie Reel"
+                className="h-3.5vh"
+              />
+            </Box>
+
+            <AnimatedText text="Take Me to the Movies" isScale />
+          </HStack>
+        </NavLink>
       </HStackFull>
       <ScrollProgressBar
         containerRef={containerRef}
@@ -102,7 +110,7 @@ export default function Index() {
             iconRotation="group-hover:rotate-30"
           />
         </Flex>
-        <Text className="text-col-200 text-stroke-8-200 text-lg textShadow">
+        <Text className="text-col-200 text-stroke-8-200 md:text-lg textShadow">
           Page {currentPage} of {movies.totalPages}
         </Text>
         <Flex className="pt-0.5vh">

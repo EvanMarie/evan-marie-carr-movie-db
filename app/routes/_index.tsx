@@ -21,12 +21,15 @@ export default function Index() {
     <FlexFull className="justify-center items-center h-[100svh] bg-col-450 bg-radial4op50 rounded-none">
       <FallingImages />
       <Transition className="absolute inset-0 w-full h-full justify-center items-center rounded-none insetShadow5xl">
-        <VStackFull className="text-center xxl:w-[60vw]" gap="gap-[3vh]">
-          <VStack gap="gap-[0px]">
-            <Text className="blockLetters textShineLg text-col-900 text-stroke-10-900 text-4.5vh md:text-[8vh] lg:text-[10vh] text-center animate-slideInRight">
+        <VStackFull
+          className="text-center xxl:w-[60vw]"
+          gap="gap-3vh lg:gap-5vh"
+        >
+          <VStack gap="gap-0.5vh md:gap-1vh lg:gap-2vh">
+            <Text className="blockLetters textShineLg text-col-900 text-stroke-10-900 text-6vh md:text-8vh lg:text-10vh text-center animate-slideInRight">
               Take Me To
             </Text>
-            <Text className="blockLetters textShineLg text-col-900 text-stroke-10-900 text-[4.5vh] md:text-[8vh] lg:text-[10vh] text-center animate-slideInLeft">
+            <Text className="blockLetters textShineLg text-col-900 text-stroke-10-900 text-6vh md:text-[8vh] lg:text-[10vh] text-center animate-slideInLeft">
               the Movies
             </Text>
           </VStack>

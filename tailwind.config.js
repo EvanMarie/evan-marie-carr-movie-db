@@ -773,7 +773,7 @@ export default {
         subtleTextShadow: "0.1vh 0.1vh 0.2vh rgba(0, 0, 0, 0.9)",
         standoutTextShadow: "0.3vh 0.3vh 0.4vh rgba(0, 0, 0, 0.9)",
         textFogXs:
-          "0 0 0.3vh #000, 0 0 0.5vh #000, 0 0 1vh #000, 0 0 0.5vh #000, 0 0 1vh #000, 0 0 1vh #575757, 0 0 1.5vh #5E5E5E, 0 0 2vh #000, 0.1vh 0.1vh 0.1vh rgba(0,0,0,0);",
+          "0 0 0.3vh #000, 0 0 0.5vh #000, 0 0 0.7vh #000, 0 0 0.5vh #000, 0 0 0.7vh #000, 0 0 1vh #575757, 0 0 1vh #5E5E5E, 0 0 1vh #000, 0.1vh 0.1vh 0.1vh rgba(0,0,0,0);",
         textFogSm:
           "0 0 0.3vh #000, 0 0 0.5vh #000, 0 0 1vh #000, 0 0 0.5vh #000, 0 0 1.5vh #000, 0 0 2vh #575757, 0 0 2vh #5E5E5E, 0 0 3vh #000, 0.1vh 0.1vh 0.1vh rgba(0,0,0,0);",
         textFogMd:

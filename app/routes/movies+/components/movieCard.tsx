@@ -20,17 +20,21 @@ export default function MovieCard({
         <Flex
           className={
             index === 0 || index % 2 === 0
-              ? ""
-              : "pt-2.5vh md:pt-3.5vh xl:pt-5.5vh"
+              ? "pt-1.5vh"
+              : "pt-1.5vh sm:pt-2.5vh md:pt-3.5vh xl:pt-5.5vh"
           }
         >
           <VStackFull>
             <Center className="w-95% border-970-md shadowNarrowLoose">
-              <Image src={movie.posterUrl || imageFallback} alt={movie.title} />
+              <Image
+                src={movie.posterUrl || imageFallback}
+                alt={movie.title}
+                className="w-full h-full"
+              />
             </Center>
-
-            <Text>{movie.title}</Text>
-            <Text>{movie.rating}</Text>
+            <Text className="text-2vh text-yellow-300 text-stroke-5-200 textShadow text-center">
+              {movie.title}
+            </Text>
           </VStackFull>
         </Flex>
       </Flex>
