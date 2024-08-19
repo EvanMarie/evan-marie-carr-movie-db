@@ -120,30 +120,32 @@ const perspectivePlugin = plugin(function ({ addUtilities }) {
   addUtilities(utilities, ["responsive", "hover"]);
 });
 
-const rotateYPlugin = plugin(function ({ addUtilities }) {
-  const utilities = {
-    ".rotate-y-0": {
-      transform: "rotateY(0deg)",
-    },
-    ".rotate-y-15": {
-      transform: "rotateY(15deg)",
-    },
-    ".rotate-y-45": {
-      transform: "rotateY(45deg)",
-    },
-    ".rotate-y-60": {
-      transform: "rotateY(60deg)",
-    },
-    ".rotate-y-90": {
-      transform: "rotateY(90deg)",
-    },
-    ".rotate-y-105": {
-      transform: "rotateY(105deg)",
-    },
-    ".rotate-y-180": {
-      transform: "rotateY(180deg)",
-    },
-  };
+// ROTATE PLUGIN
+const rotatePlugin = plugin(function ({ addUtilities }) {
+  const increments = 5; // Set to your desired increment
+  const maxRotation = 180;
+  const rotations = Array.from(
+    { length: maxRotation / increments + 1 },
+    (_, i) => i * increments
+  );
+
+  const utilities = Object.assign(
+    {},
+    ...rotations.flatMap((value) => [
+      {
+        [`.rotate-${value}`]: {
+          transform: `rotate(${value}deg)`,
+        },
+      },
+      value !== 0
+        ? {
+            [`.\\-rotate-${value}`]: {
+              transform: `rotate(-${value}deg)`,
+            },
+          }
+        : {},
+    ])
+  );
 
   addUtilities(utilities, ["responsive", "hover"]);
 });
@@ -778,6 +780,8 @@ export default {
           "#000 0.05vh 0.05vh 0.05vh, black 0px 0px 0.5vh,  #FFF 0px 0px 0.2vh, #FFF 0px 0px 0.3vh, #FFF 0px 0px 1.2vh, #FFD700 0px 0px 0.4vh, #FFD700 0px 0px 0.5vh, 0.8vh 0.2vh 0.6vh rgba(0,0,0,0);",
         boldTextGlow:
           "#000 0.1vh 0.1vh 0.1vh, white 0px 0px 0.7vh,  #FFD700 0px 0px 0.8vh, #FFD700 0px 0px 1vh, #FFF 0px 0px 1.5vh, #FFAA00 0px 0px 1vh, #FFAA00 0px 0px 3vh, 0.8vh 0.2vh 0.6vh rgba(0,0,0,0);",
+        bolderTextGlow:
+          "#000 0.15vh 0.15vh 0.15vh, white 0px 0px 0.7vh, #fcdee6 0px 0px 0.8vh, #fcdee6 0px 0px 1vh, #FFF 0px 0px 1.5vh, #FFAA00 0px 0px 1vh, #FFAA00 0px 0px 3vh, 0.8vh 0.2vh 0.6vh rgba(0,0,0,0);",
       },
       textStrokeWidth: {
         1: "0.02vh",
@@ -1669,8 +1673,8 @@ export default {
           backgroundImage:
             "linear-gradient(to right, #D0E2F2, #D9B5AD, #e4edf5,  #D9B5AD, #D0E2F2);",
         },
-        ".butterflyFont": {
-          fontFamily: "'Butterfly Kids', cursive",
+        ".blockLetters": {
+          fontFamily: "'Londrina Shadow', sans-serif",
         },
       });
     }),
@@ -1831,7 +1835,7 @@ export default {
     customBordersPlugin,
     transitionTimingFunctionsPlugin,
     perspectivePlugin,
-    rotateYPlugin,
+    rotatePlugin,
     backfaceVisibilityPlugin,
     transformStyles,
   ],

@@ -1,7 +1,11 @@
 import React from "react";
 
 interface IconProps {
-  icon: React.ComponentType<{ className?: string; tabIndex?: number }>;
+  icon: React.ComponentType<{
+    className?: string;
+    tabIndex?: number;
+    style?: React.CSSProperties;
+  }>;
   containerClassName?: string;
   pos?: "absolute" | "relative" | "fixed" | "sticky" | "static" | "inherit";
   t?: string;
@@ -22,7 +26,6 @@ export default function Icon({
   tabIndex = -1,
   containerClassName = "",
   iconClassName = "",
-  // hoverCursor = "hover:cursor-default",
   hoverCursor = "cursor-pointer",
   w = "w-fit",
   h = "h-fit",
@@ -34,23 +37,18 @@ export default function Icon({
   rounded = "rounded-xs",
   onClick,
 }: IconProps) {
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === "Enter" || event.key === " ") {
-      onClick && onClick();
-    }
-  };
-
   return (
     <div
       role="button"
       tabIndex={tabIndex}
       className={`${rounded} ${w} ${h} ${pos} ${t} ${b} ${r} ${l} ${containerClassName} ${hoverCursor}`}
       onClick={onClick}
-      onKeyDown={handleKeyDown}
+      style={{ outline: "none" }}
     >
       <IconComponent
         className={`${rounded} ${iconClassName} ${hoverCursor}`}
         tabIndex={tabIndex}
+        style={{ outline: "none" }}
       />
     </div>
   );

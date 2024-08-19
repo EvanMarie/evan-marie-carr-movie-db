@@ -9,7 +9,8 @@ export default function AnimatedIconButton({
   onClick,
   type,
   target,
-  icon,
+  iconLeft,
+  iconRight,
   text,
   isActive,
   isDisabled,
@@ -22,7 +23,8 @@ export default function AnimatedIconButton({
   onClick?: () => void;
   type?: "submit" | "button";
   target?: string;
-  icon?: any;
+  iconLeft?: any;
+  iconRight?: any;
   iconClassName?: string;
   iconRotation?: string;
   text: string;
@@ -36,7 +38,7 @@ bg-radial1op75 shadowNarrowTight border-900-md transition-300`;
   const smallClassName =
     "h-[3vh] px-1vh text-[1.6vh] md:text-[1.8vh]  leading-tight";
   const normalClassName =
-    "h-[3.5vh] px-1vh text-[1.8vh] md:text-[2.2vh] leading-tight";
+    "h-3.5vh md:h-[4vh] px-1vh text-[1.8vh] md:text-[2.2vh] leading-tight";
   const displayClassName = `${baseClassName} ${
     buttonSize === "small" ? smallClassName : normalClassName
   } ${className}`;
@@ -66,15 +68,23 @@ bg-radial1op75 shadowNarrowTight border-900-md transition-300`;
               className={` hover:cursor-pointer ${displayClassName} items-center`}
               gap="gap-0.2vh"
             >
-              {icon && (
+              {iconLeft && (
                 <Icon
-                  icon={icon}
+                  icon={iconLeft}
                   hoverCursor="cursor-pointer"
                   iconClassName={displayIconClassName}
                   containerClassName={`${iconRotation} transition-400`}
                 />
               )}
               {text && <Text>{text}</Text>}
+              {iconRight && (
+                <Icon
+                  icon={iconRight}
+                  hoverCursor="cursor-pointer"
+                  iconClassName={displayIconClassName}
+                  containerClassName={`${iconRotation} transition-400`}
+                />
+              )}
             </HStack>
           </motion.button>
         </NavLink>
@@ -96,15 +106,23 @@ bg-radial1op75 shadowNarrowTight border-900-md transition-300`;
             className={` hover:cursor-pointer  ${displayClassName} items-center`}
             gap="gap-0.2vh"
           >
-            {icon && (
+            {iconLeft && (
               <Icon
                 hoverCursor="cursor-pointer"
-                icon={icon}
+                icon={iconLeft}
                 iconClassName={displayIconClassName}
                 containerClassName={`${iconRotation} transition-400`}
               />
             )}
             {text && <Text>{text}</Text>}
+            {iconRight && (
+              <Icon
+                hoverCursor="cursor-pointer"
+                icon={iconRight}
+                iconClassName={displayIconClassName}
+                containerClassName={`${iconRotation} transition-400`}
+              />
+            )}
           </HStack>
         </motion.button>
       )}
