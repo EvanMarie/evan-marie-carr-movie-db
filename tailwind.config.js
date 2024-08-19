@@ -772,16 +772,30 @@ export default {
         textShadow: "0.2vh 0.2vh 0.2vh rgba(0, 0, 0, 0.9)",
         subtleTextShadow: "0.1vh 0.1vh 0.2vh rgba(0, 0, 0, 0.9)",
         standoutTextShadow: "0.3vh 0.3vh 0.4vh rgba(0, 0, 0, 0.9)",
-        textFog:
+        textFogXs:
+          "0 0 0.3vh #000, 0 0 0.5vh #000, 0 0 1vh #000, 0 0 0.5vh #000, 0 0 1vh #000, 0 0 1vh #575757, 0 0 1.5vh #5E5E5E, 0 0 2vh #000, 0.1vh 0.1vh 0.1vh rgba(0,0,0,0);",
+        textFogSm:
+          "0 0 0.3vh #000, 0 0 0.5vh #000, 0 0 1vh #000, 0 0 0.5vh #000, 0 0 1.5vh #000, 0 0 2vh #575757, 0 0 2vh #5E5E5E, 0 0 3vh #000, 0.1vh 0.1vh 0.1vh rgba(0,0,0,0);",
+        textFogMd:
+          "0 0 0.4vh #000, 0 0 0.7vh #000, 0 0 1.1vh #000, 0 0 0.7vh #000, 0 0 1.7vh #000, 0 0 4vh #575757, 0 0 3.5vh #5E5E5E, 0 0 5vh #000, 0.15vh 0.15vh 0.15vh rgba(0,0,0,0);",
+        textFogLg:
           "0 0 0.5vh #000, 0 0 1vh #000, 0 0 1.5vh #000, 0 0 1vh #000, 0 0 3vh #000, 0 0 4vh #575757, 0 0 5.5vh #5E5E5E, 0 0 7.5vh #000, 0.2vh 0.2vh 0.2vh rgba(0,0,0,0);",
+        textShineXs:
+          "0 0 0.3vh #ffdb33, 0 0 0.5vh #ffdb33, 0 0 1vh #ffdb33, 0 0 0.5vh #ffdb33, 0 0 1vh #ffdb33, 0 0 1vh #ffd724, 0 0 1.5vh #fcdd4e, 0 0 2vh #ffdb33, 0.1vh 0.1vh 0.1vh rgba(0,0,0,0);",
+        textShineSm:
+          "0 0 0.3vh #ffdb33, 0 0 0.5vh #ffdb33, 0 0 1vh #ffdb33, 0 0 0.5vh #ffdb33, 0 0 1.5vh #ffdb33, 0 0 2vh #ffd724, 0 0 2vh #fcdd4e, 0 0 3vh #ffdb33, 0.1vh 0.1vh 0.1vh rgba(0,0,0,0);",
+        textShineMd:
+          "0 0 0.4vh #ffdb33, 0 0 0.7vh #ffdb33, 0 0 1.1vh #ffdb33, 0 0 0.7vh #ffdb33, 0 0 1.7vh #ffdb33, 0 0 4vh #ffd724, 0 0 3.5vh #fcdd4e, 0 0 5vh #ffdb33, 0.15vh 0.15vh 0.15vh rgba(0,0,0,0);",
+        textShineLg:
+          "0 0 0.3vh #000, 0 0 0.7vh #ffdb33, 0 0 1vh #ffdb33, 0 0 1.5vh #ffdb33, 0 0 1vh #ffdb33, 0 0 3vh #ffdb33, 0 0 4vh #ffd724, 0 0 5.5vh #fcdd4e, 0 0 7.5vh #ffdb33, 0.2vh 0.2vh 0.2vh rgba(0,0,0,0);",
         textGlow:
           "#FFD700 0px 0px 0.5vh, #FFD700 0px 0px 1vh, #FFF 0px 0px 1.5vh, rgb(255, 223, 186) 0px 0px 1vh, rgb(255, 223, 186) 0px 0px 1vh, 0.8vh 0.2vh 0.6vh rgba(0,0,0,0);",
         boldText:
           "#000 0.05vh 0.05vh 0.05vh, black 0px 0px 0.5vh,  #FFF 0px 0px 0.2vh, #FFF 0px 0px 0.3vh, #FFF 0px 0px 1.2vh, #FFD700 0px 0px 0.4vh, #FFD700 0px 0px 0.5vh, 0.8vh 0.2vh 0.6vh rgba(0,0,0,0);",
         boldTextGlow:
-          "#000 0.1vh 0.1vh 0.1vh, white 0px 0px 0.7vh,  #FFD700 0px 0px 0.8vh, #FFD700 0px 0px 1vh, #FFF 0px 0px 1.5vh, #FFAA00 0px 0px 1vh, #FFAA00 0px 0px 3vh, 0.8vh 0.2vh 0.6vh rgba(0,0,0,0);",
+          "#000 0.1vh 0.1vh 0.1vh, white 0px 0px 0.7vh,  #FFD700 0px 0px 0.8vh, #FFD700 0px 0px 1vh, #ffd724 0px 0px 1.5vh, #ffd724 0px 0px 1vh, #ffd724 0px 0px 3vh, 0.8vh 0.2vh 0.6vh rgba(0,0,0,0);",
         bolderTextGlow:
-          "#000 0.15vh 0.15vh 0.15vh, white 0px 0px 0.7vh, #fcdee6 0px 0px 0.8vh, #fcdee6 0px 0px 1vh, #FFF 0px 0px 1.5vh, #FFAA00 0px 0px 1vh, #FFAA00 0px 0px 3vh, 0.8vh 0.2vh 0.6vh rgba(0,0,0,0);",
+          "#000 0.15vh 0.15vh 0.15vh, white 0px 0px 0.7vh, #fcdee6 0px 0px 0.8vh, #fcdee6 0px 0px 1vh, #ffd724 0px 0px 1.5vh, #ffd724 0px 0px 1vh, #ffd724 0px 0px 3vh, 0.8vh 0.2vh 0.6vh rgba(0,0,0,0);",
       },
       textStrokeWidth: {
         1: "0.02vh",

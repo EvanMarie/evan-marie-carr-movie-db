@@ -23,10 +23,10 @@ export default function Index() {
       <Transition className="absolute inset-0 w-full h-full justify-center items-center rounded-none insetShadow5xl">
         <VStackFull className="text-center xxl:w-[60vw]" gap="gap-[3vh]">
           <VStack gap="gap-[0px]">
-            <Text className="blockLetters bolderTextGlow text-col-900 text-stroke-12-900 text-4.5vh md:text-[8vh] lg:text-[10vh] text-center animate-slideInRight">
+            <Text className="blockLetters textShineLg text-col-900 text-stroke-10-900 text-4.5vh md:text-[8vh] lg:text-[10vh] text-center animate-slideInRight">
               Take Me To
             </Text>
-            <Text className="blockLetters bolderTextGlow text-col-900 text-stroke-12-900 text-[4.5vh] md:text-[8vh] lg:text-[10vh] text-center animate-slideInLeft">
+            <Text className="blockLetters textShineLg text-col-900 text-stroke-10-900 text-[4.5vh] md:text-[8vh] lg:text-[10vh] text-center animate-slideInLeft">
               the Movies
             </Text>
           </VStack>

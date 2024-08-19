@@ -61,13 +61,13 @@ export default function Index() {
   return (
     <VStackFull className="h-[100svh] overflow-hidden">
       <HStackFull className="fixed inset-0 h-[5svh] justify-between items-center bg-col-880 bg-diagonal3op75 rounded-none z-50 px-1vh">
-        <HStack className="items-center">
+        <HStack className="items-center" gap="gap-1.5vh">
           <Image
             src="/images/movie-reel-yellow.webp"
             alt="Movie Reel"
-            className="h-3.5vh"
+            className="h-3.5vh rounded-full shadowNarrowLoose"
           />
-          <h3 className="font-cursive text-yellow-300 text-stroke-8-200 ">
+          <h3 className="blockLetters text-yellow-200 text-stroke-6-200 textFogXs">
             Take Me to the Movies
           </h3>
         </HStack>

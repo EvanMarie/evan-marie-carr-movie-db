@@ -33,8 +33,8 @@ export default function AnimatedIconButton({
   className?: string;
   buttonSize?: "small" | "normal";
 }) {
-  const baseClassName = `bg-col-200 hover:bg-col-400 text-col-900 text-stroke-8-900
-bg-radial1op75 shadowNarrowTight border-900-md transition-300`;
+  const baseClassName = `bg-yellow-300 hover:bg-yellow-400 text-col-900 text-stroke-8-900
+bg-gradient-to-r from-yellow-300  shadowNarrowTight border-900-md transition-300`;
   const smallClassName =
     "h-[3vh] px-1vh text-[1.6vh] md:text-[1.8vh]  leading-tight";
   const normalClassName =
