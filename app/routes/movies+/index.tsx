@@ -48,7 +48,7 @@ export default function Index() {
 
   return (
     <VStackFull>
-      <HStackFull className="fixed inset-0 h-[5svh] justify-between items-center bg-col-340 rounded-none">
+      <HStackFull className="fixed inset-0 h-[5svh] justify-between items-center bg-col-570 rounded-none z-50">
         <h3>Movies</h3>
       </HStackFull>
       <ScrollProgressBar
@@ -59,9 +59,9 @@ export default function Index() {
         className="h-[100svh] pt-[5.5svh] overflow-y-auto overflow-x-hidden"
         ref={containerRef}
       >
-        <VStackFull className="py-1vh">
-          <FlexFull className="xl:max-w-[140svh]">
-            <Wrap className="justify-evenly">
+        <VStackFull className="py-2vh">
+          <FlexFull className="xl:max-w-90%">
+            <Wrap className="justify-evenly gap-1vh md:gap-2vh">
               {movies.data.map((movie, index) => (
                 <MovieCard key={movie.id} movie={movie} index={index} />
               ))}

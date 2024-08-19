@@ -40,7 +40,7 @@ const ScrollProgressBar: React.FC<ScrollProgressBarProps> = ({
 
   return (
     <FlexFull
-      className={`${position} h-fit ${trackColor} insetShadowSm ${rounded}`}
+      className={`${position} h-fit ${trackColor} insetShadowSm ${rounded} z-50`}
     >
       <motion.div
         ref={scrollRef}

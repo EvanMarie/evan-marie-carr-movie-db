@@ -36,7 +36,7 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <FlexFull className="bg-col-780 h-[100svh] max-h-[100svh] overflow-hidden rounded-none">
+        <FlexFull className="bg-col-790 h-[100svh] max-h-[100svh] overflow-hidden rounded-none">
           <Outlet />
           <ScrollRestoration />
           <Scripts />
