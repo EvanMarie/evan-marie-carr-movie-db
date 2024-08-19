@@ -48,7 +48,7 @@ export default function Index() {
 
   return (
     <VStackFull>
-      <HStackFull className="fixed inset-0 h-[5svh] justify-between items-center bg-col-570 rounded-none z-50">
+      <HStackFull className="fixed inset-0 h-[5svh] justify-between items-center bg-col-780 bg-radial5op75 rounded-none z-50">
         <h3>Movies</h3>
       </HStackFull>
       <ScrollProgressBar

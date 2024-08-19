@@ -1,8 +1,13 @@
 import type { MetaFunction } from "@remix-run/node";
 import { NavLink } from "@remix-run/react";
+import { MdLocalMovies } from "react-icons/md";
+import Box from "~/buildingBlockComponents/box";
+import FallingImages from "~/buildingBlockComponents/fallingImages";
 import FlexFull from "~/buildingBlockComponents/flexFull";
 import HStack from "~/buildingBlockComponents/hStack";
 import Icon from "~/buildingBlockComponents/icon";
+import Image from "~/buildingBlockComponents/image";
+import NavButton from "~/buildingBlockComponents/navLinkButton";
 import Text from "~/buildingBlockComponents/text";
 import Transition from "~/buildingBlockComponents/transition";
 import VStackFull from "~/buildingBlockComponents/vStackFull";
@@ -16,54 +21,30 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Index() {
-  function NavButton({
-    to,
-    text,
-    icon,
-    isExternal = false,
-    className = "bg-100-linear3op25 text-col-900 hover:bg-400-diagonal3op75 hover:text-col-100 shadowBroadNormal hover:metallicEdgesMd",
-  }: {
-    to: string;
-    text?: string;
-    isExternal?: boolean;
-    icon?: React.ComponentType<{ className?: string }>;
-    className?: string;
-  }) {
-    return (
-      // eslint-disable-next-line react/jsx-no-target-blank
-      <NavLink to={to} target={isExternal ? "_blank" : undefined}>
-        <HStack
-          className={`px-[1.5vh] py-[0.5vh] transition-400 text-center ${className} items-center group`}
-        >
-          {icon && (
-            <Icon
-              icon={icon}
-              iconClassName="text-col-900 text-[2.5vh] group-hover:text-cyan-200 group-hover:transition-400"
-            />
-          )}
-          <Text>{text}</Text>
-        </HStack>
-      </NavLink>
-    );
-  }
   return (
-    <FlexFull>
-      <Transition className="w-full h-full justify-center items-center">
+    <FlexFull className="justify-center items-center h-[100svh] bg-col-750 bg-radial4op75">
+      {/* <Box className="w-90% sm:w-80% md:w-70% lg:w-60% xl:w-50% xxl:w-40% pr-1.5vh animate-slideInDown">
+        <Image
+          src="/images/movie-reel-yellow.webp"
+          alt="movie reel image"
+          className="opacity-40"
+        />
+      </Box> */}
+      <FallingImages />
+      <Transition className="absolute inset-0 w-full h-full justify-center items-center">
         <VStackFull className="text-center xxl:w-[60vw]" gap="gap-[4vh]">
           <Text className="font-cursive boldTextGlow text-col-900 text-stroke-8-900 text-[4.5vh] md:text-[8vh] lg:text-[10vh] text-center animate-slideInRight">
-            Movie Database
+            Let's Go To
           </Text>
-          <VStackFull className="text-col-100 text-[2vh] sm:text-[2.5vh] md:text-[3vh] textShadow text-center">
-            <Text className="text-col-100 animate-slideInLeft">
-              A Project Launchpad
-            </Text>
-          </VStackFull>
+          <Text className="font-cursive boldTextGlow text-col-900 text-stroke-8-900 text-[4.5vh] md:text-[8vh] lg:text-[10vh] text-center animate-slideInLeft">
+            the Movies
+          </Text>
+
           <Wrap className="animate-slideInUp50vh gap-[3vh] duration-2200 justify-center">
-            <NavButton text="Design Presets" to="/design" />{" "}
             <NavButton
-              text="DarkViolet.ai"
-              to="https://darkviolet.ai"
-              className="shadowBroadLoose border-970-md bg-gradient-to-r from-[#cd36f4] via-[#ab00ff] to-[#9b82ee] text-col-100 textShadow hover:metallicEdgesXl hover:scale-105"
+              buttonText="Yes! Let's go!"
+              to="/movies"
+              iconLeft={MdLocalMovies}
             />
           </Wrap>
         </VStackFull>
