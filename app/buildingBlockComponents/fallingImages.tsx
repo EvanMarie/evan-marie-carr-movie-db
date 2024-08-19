@@ -20,8 +20,8 @@ const getRandomValue = (min: number, max: number) =>
 
 export default function FallingImages({
   numImages = 53,
-  maxImageSize = 5,
-  minImageSize = 2,
+  maxImageSize = 3,
+  minImageSize = 1,
   maxImageRotation = 75,
   minImageRotation = -75,
   maxDuration = 7,
@@ -75,7 +75,7 @@ export default function FallingImages({
         custom={i}
         style={{
           width: imageSize,
-          height: imageSize,
+          height: "auto", // Set height to auto to maintain aspect ratio
           position: "absolute",
           zIndex: 100,
         }}

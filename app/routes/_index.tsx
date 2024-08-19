@@ -1,13 +1,8 @@
 import type { MetaFunction } from "@remix-run/node";
-import { NavLink } from "@remix-run/react";
-import { MdLocalMovies } from "react-icons/md";
-import Box from "~/buildingBlockComponents/box";
+import { PiFilmReelBold } from "react-icons/pi";
+import AnimatedIconButton from "~/buildingBlockComponents/animatedIconButton";
 import FallingImages from "~/buildingBlockComponents/fallingImages";
 import FlexFull from "~/buildingBlockComponents/flexFull";
-import HStack from "~/buildingBlockComponents/hStack";
-import Icon from "~/buildingBlockComponents/icon";
-import Image from "~/buildingBlockComponents/image";
-import NavButton from "~/buildingBlockComponents/navLinkButton";
 import Text from "~/buildingBlockComponents/text";
 import Transition from "~/buildingBlockComponents/transition";
 import VStackFull from "~/buildingBlockComponents/vStackFull";
@@ -22,14 +17,7 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <FlexFull className="justify-center items-center h-[100svh] bg-col-750 bg-radial4op75">
-      {/* <Box className="w-90% sm:w-80% md:w-70% lg:w-60% xl:w-50% xxl:w-40% pr-1.5vh animate-slideInDown">
-        <Image
-          src="/images/movie-reel-yellow.webp"
-          alt="movie reel image"
-          className="opacity-40"
-        />
-      </Box> */}
+    <FlexFull className="justify-center items-center h-[100svh] bg-col-450 bg-radial4op50">
       <FallingImages />
       <Transition className="absolute inset-0 w-full h-full justify-center items-center">
         <VStackFull className="text-center xxl:w-[60vw]" gap="gap-[4vh]">
@@ -41,10 +29,10 @@ export default function Index() {
           </Text>
 
           <Wrap className="animate-slideInUp50vh gap-[3vh] duration-2200 justify-center">
-            <NavButton
-              buttonText="Yes! Let's go!"
-              to="/movies"
-              iconLeft={MdLocalMovies}
+            <AnimatedIconButton
+              text="Walk me in!"
+              link="/movies"
+              icon={PiFilmReelBold}
             />
           </Wrap>
         </VStackFull>

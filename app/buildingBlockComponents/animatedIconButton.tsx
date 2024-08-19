@@ -14,7 +14,8 @@ export default function AnimatedIconButton({
   isActive,
   iconClassName = "text-[2.5vh]",
   iconRotation = "group-hover:rotate-90",
-  className = `h-[3.5vh] px-[1vh] text-[1.5vh] md:text-[2vh]`,
+  className = `h-[3.5vh] px-[1vh] text-[1.5vh] md:text-[2vh] bg-col-200 text-col-900 text-stroke-8-900
+bg-radial1op75 shadowNarrowTight`,
 }: {
   link?: string;
   onClick?: () => void;
@@ -33,7 +34,7 @@ export default function AnimatedIconButton({
         <NavLink to={link} className="group" target={target}>
           <motion.div
             whileHover={{
-              scale: isActive ? 1 : 1.05,
+              scale: isActive ? 1 : 1.02,
               transition: { duration: 0.4 },
             }}
             whileTap={{
@@ -42,7 +43,7 @@ export default function AnimatedIconButton({
             }}
           >
             <HStack
-              className={` hover:cursor-pointer  ${className} items-center`}
+              className={` hover:cursor-pointer ${className} items-center`}
               gap="gap-[0.4vh]"
             >
               {icon && (

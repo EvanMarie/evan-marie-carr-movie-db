@@ -773,11 +773,11 @@ export default {
         textFog:
           "0 0 0.5vh #000, 0 0 1vh #000, 0 0 1.5vh #000, 0 0 1vh #000, 0 0 3vh #000, 0 0 4vh #575757, 0 0 5.5vh #5E5E5E, 0 0 7.5vh #000, 0.2vh 0.2vh 0.2vh rgba(0,0,0,0);",
         textGlow:
-          "#00FFFF 0px 0px 0.5vh, #00FFFF 0px 0px 1vh, #FFF 0px 0px 1.5vh, rgb(250, 238, 167) 0px 0px 1vh, rgb(250, 238, 167) 0px 0px 1vh, 0.8vh 0.2vh 0.6vh rgba(0,0,0,0);",
+          "#FFD700 0px 0px 0.5vh, #FFD700 0px 0px 1vh, #FFF 0px 0px 1.5vh, rgb(255, 223, 186) 0px 0px 1vh, rgb(255, 223, 186) 0px 0px 1vh, 0.8vh 0.2vh 0.6vh rgba(0,0,0,0);",
         boldText:
-          "#000 0.05vh 0.05vh 0.05vh, black 0px 0px 0.5vh,  #FFF 0px 0px 0.2vh, #FFF 0px 0px 0.3vh, #FFF 0px 0px 1.2vh, #FFF 0px 0px 0.4vh, #FFF 0px 0px 0.5vh, 0.8vh 0.2vh 0.6vh rgba(0,0,0,0);",
+          "#000 0.05vh 0.05vh 0.05vh, black 0px 0px 0.5vh,  #FFF 0px 0px 0.2vh, #FFF 0px 0px 0.3vh, #FFF 0px 0px 1.2vh, #FFD700 0px 0px 0.4vh, #FFD700 0px 0px 0.5vh, 0.8vh 0.2vh 0.6vh rgba(0,0,0,0);",
         boldTextGlow:
-          "#000 0.1vh 0.1vh 0.1vh, white 0px 0px 0.7vh,  #00FFFF 0px 0px 0.8vh, #00FFFF 0px 0px 1vh, #FFF 0px 0px 1.5vh, #FF2D95 0px 0px 1vh, #FF2D95 0px 0px 3vh, 0.8vh 0.2vh 0.6vh rgba(0,0,0,0);",
+          "#000 0.1vh 0.1vh 0.1vh, white 0px 0px 0.7vh,  #FFD700 0px 0px 0.8vh, #FFD700 0px 0px 1vh, #FFF 0px 0px 1.5vh, #FFAA00 0px 0px 1vh, #FFAA00 0px 0px 3vh, 0.8vh 0.2vh 0.6vh rgba(0,0,0,0);",
       },
       textStrokeWidth: {
         1: "0.02vh",
