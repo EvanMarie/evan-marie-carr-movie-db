@@ -17,7 +17,8 @@ export const fetchMovies = async (page = 1, genre?: string) => {
   try {
     const params: any = { page };
     if (genre) params.genre = genre;
-    const response = await apiClient.get(`/movies?limit=${numMovies}`, { params });
+    params.limit = numMovies;
+    const response = await apiClient.get(`/movies`, { params });
     return response.data;
   } catch (error: any) {
     console.error('Error fetching movies:', error.response?.data || error.message || error);
@@ -26,15 +27,20 @@ export const fetchMovies = async (page = 1, genre?: string) => {
 };
 
 export const fetchMovieById = async (id: string) => {
+  console.log('Fetching movie with ID:', id);
   try {
     const response = await apiClient.get(`/movies/${id}`);
+    if (!response.data) {
+      console.warn(`No data returned for movie ID: ${id}`);
+      return null;
+    }
+    console.log(response);
     return response.data;
   } catch (error: any) {
     console.error('Error fetching movie:', error.response?.data || error.message || error);
     throw new Error('Failed to fetch movie');
   }
 };
-
 
 export const fetchGenres = async () => {
   try {

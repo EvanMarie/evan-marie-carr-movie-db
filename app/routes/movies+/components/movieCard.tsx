@@ -11,6 +11,7 @@ import BouncingDots from "~/buildingBlockComponents/bouncingDots";
 import { Movie } from "../interfaces/movie";
 import Transition from "~/buildingBlockComponents/transition";
 import { motion } from "framer-motion";
+import { NavLink } from "@remix-run/react";
 
 export default function MovieCard({
   movie,
@@ -28,46 +29,51 @@ export default function MovieCard({
   return (
     <AnimatedComponent>
       <Transition>
-        <motion.div
+        <NavLink
           className="flex w-85vw sm:w-45vw md:w-30vw xl:w-20vw"
-          whileHover={{
-            scale: 1.01,
-            transition: { duration: 0.4 },
-          }}
-          whileTap={{
-            scale: 0.95,
-            transition: { duration: 0.4 },
-          }}
+          to={`/movies/${movie.id}`}
         >
-          <FlexFull
-            className={
-              index === 0 || index % 2 === 0
-                ? "pt-1.5vh"
-                : "pt-1.5vh sm:pt-3.5vh md:pt-4.5vh xl:pt-5.5vh"
-            }
+          <motion.div
+            className="flex w-full h-full"
+            whileHover={{
+              scale: 1.01,
+              transition: { duration: 0.4 },
+            }}
+            whileTap={{
+              scale: 0.95,
+              transition: { duration: 0.4 },
+            }}
           >
-            <VStackFull className="hover:cursor-pointer">
-              <Center className="w-95% border-980-md hover:border-280-md transition-300 shadowNarrowLoose rounded-[1.6vh] ">
-                {isLoading && (
-                  <Center className="skeleton w-full h-full rounded-[1.5vh] text-transparent min-h-[40vh] bg-radial4 animate-pulse duration-500">
-                    <BouncingDots />
-                  </Center>
-                )}
-                <Image
-                  src={movie.posterUrl || imageFallback}
-                  alt={movie.title}
-                  className={`w-full h-full rounded-[1.5vh] ${
-                    isLoading ? "hidden" : ""
-                  }`}
-                  onLoad={handleImageLoad}
-                />
-              </Center>
-              <Text className="text-2vh text-yellow-300 text-stroke-5-200 textShadow text-center">
-                {movie.title}
-              </Text>
-            </VStackFull>
-          </FlexFull>
-        </motion.div>
+            <FlexFull
+              className={
+                index === 0 || index % 2 === 0
+                  ? "pt-1.5vh"
+                  : "pt-1.5vh sm:pt-3.5vh md:pt-4.5vh xl:pt-5.5vh"
+              }
+            >
+              <VStackFull className="hover:cursor-pointer">
+                <Center className="w-95% border-980-md hover:border-280-md transition-300 shadowNarrowLoose rounded-[1.6vh] ">
+                  {isLoading && (
+                    <Center className="skeleton w-full h-full rounded-[1.5vh] text-transparent min-h-[40vh] bg-radial4 animate-pulse duration-500">
+                      <BouncingDots />
+                    </Center>
+                  )}
+                  <Image
+                    src={movie.posterUrl || imageFallback}
+                    alt={movie.title}
+                    className={`w-full h-full rounded-[1.5vh] ${
+                      isLoading ? "hidden" : ""
+                    }`}
+                    onLoad={handleImageLoad}
+                  />
+                </Center>
+                <Text className="text-2vh text-yellow-300 text-stroke-5-200 textShadow text-center">
+                  {movie.title}
+                </Text>
+              </VStackFull>
+            </FlexFull>
+          </motion.div>
+        </NavLink>
       </Transition>
     </AnimatedComponent>
   );
