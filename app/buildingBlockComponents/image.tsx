@@ -1,5 +1,6 @@
 import { useState, type CSSProperties, type ImgHTMLAttributes } from "react";
 import { imageFallback } from "styles";
+import Transition from "./transition";
 
 interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   src: string;
