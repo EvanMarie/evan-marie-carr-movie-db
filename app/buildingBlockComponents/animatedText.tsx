@@ -24,7 +24,7 @@ export default function AnimatedText({
   containerClassName,
   isWave,
   isScale,
-  textSize = "text-3.5vh sm:text-4vh ",
+  textSize = "text-3.1vh sm:text-3.8vh",
   textColor = "text-yellow-200 text-stroke-6-w00",
   textShadow = "textFogXs",
   textSpacing = "tracking-wider md:tracking-widest",

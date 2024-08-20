@@ -3,23 +3,24 @@ import { ClientLoaderFunctionArgs, useLoaderData } from "@remix-run/react";
 import VStackFull from "~/buildingBlockComponents/vStackFull";
 import Wrap from "~/buildingBlockComponents/wrap";
 import MovieCard from "./components/movieCard";
-import { fetchMovies } from "~/utils/movies-api";
+import { fetchGenres, fetchMovies } from "~/utils/movies-api";
 import { MoviesResponse } from "./interfaces/movieResponse";
 import FlexFull from "~/buildingBlockComponents/flexFull";
 import PaginationControls from "./components/paginationControls";
 import MoviesHeaderBar from "./components/moviesHeaderBar";
-
+import { Genre, GenreResponse } from "./interfaces/genre";
 
 /* ************************ CLIENT LOADER ************************ */
 
 export const clientLoader = async ({ request }: ClientLoaderFunctionArgs) => {
   const url = new URL(request.url);
   const page = Number(url.searchParams.get("page")) || 1;
-  const genre = url.searchParams.get("genre") || "";
+  const selectedGenre = url.searchParams.get("genre") || "";
 
   try {
-    const movies = await fetchMovies(page, genre);
-    return { movies, page };
+    const movies = await fetchMovies(page, selectedGenre);
+    const genres = await fetchGenres();
+    return { movies, page, genres };
   } catch (error) {
     console.error("Loader error:", error);
     throw new Response("Failed to load movies", { status: 500 });
@@ -27,20 +28,25 @@ export const clientLoader = async ({ request }: ClientLoaderFunctionArgs) => {
 };
 clientLoader.hydrate = true;
 
+/* ************************ INDEX COMPONENT  ************************ */
+
 export default function Index() {
-  const { movies, page } = useLoaderData<{
+  const { movies, page, genres } = useLoaderData<{
     movies: MoviesResponse;
     page: number;
+    genres: GenreResponse;
   }>();
+
   const [currentPage, setCurrentPage] = useState(page);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
+  /* ************************ CURRENT PAGE  ************************ */
   useEffect(() => {
     setCurrentPage(page);
   }, [page]);
 
   {
-    /* *********  Scroll to top when the current page changes ********* */
+    /* ************************  SCROLL TO TOP ************************ */
   }
   useEffect(() => {
     if (containerRef.current) {
@@ -53,7 +59,7 @@ export default function Index() {
   }
 
   {
-    /* ****************** First and Last Page Definitions ****************** */
+    /* ************************ FIRST / LAST PAGE ************************ */
   }
   const nextPage =
     currentPage < movies.totalPages ? currentPage + 1 : currentPage;
@@ -61,9 +67,9 @@ export default function Index() {
 
   return (
     <VStackFull className="h-[100svh] overflow-hidden">
-      <MoviesHeaderBar scrollRef={containerRef} />
+      <MoviesHeaderBar scrollRef={containerRef} genres={genres.data} />
 
-      {/* ****************** Movie Images ****************** */}
+      {/* ****************** MOVIE CARDS ****************** */}
       <FlexFull
         className="h-[100svh] py-[5.5svh] overflow-y-auto overflow-x-hidden hide-scrollbar"
         ref={containerRef}
@@ -75,7 +81,7 @@ export default function Index() {
         </Wrap>
       </FlexFull>
 
-      {/* ****************** Pagination controls ****************** */}
+      {/* ****************** PAGINATION FOOTER ****************** */}
       <PaginationControls
         currentPage={currentPage}
         prevPage={prevPage}

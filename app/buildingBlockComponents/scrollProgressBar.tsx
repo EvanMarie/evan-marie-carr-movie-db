@@ -40,7 +40,8 @@ const ScrollProgressBar: React.FC<ScrollProgressBarProps> = ({
 
   return (
     <FlexFull
-      className={`${position} h-fit ${trackColor} shadowNarrowNormal ${rounded} z-50`}
+      className={`${position} h-fit ${trackColor} shadowNarrowNormal ${rounded}`}
+      style={{ zIndex: 40 }}
     >
       <motion.div
         ref={scrollRef}

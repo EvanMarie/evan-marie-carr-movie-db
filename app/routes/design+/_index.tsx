@@ -55,7 +55,6 @@ export function CustomNavLink({
   className,
 }: CustomNavLinkProps) {
   const hash = useLocation().hash;
-  console.log(hash);
 
   return (
     <Box className={className}>

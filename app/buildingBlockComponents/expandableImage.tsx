@@ -30,7 +30,7 @@ export function ExpandableImage(image: { src: string; caption: string }) {
         >
           <Icon icon={ExpandIcon} iconClassName="text-col-900" />
         </motion.div>
-        <Center className="w-60vw sm:w-50vw md:w-40vw border-980-md  shadowNarrowLoose rounded-[1.6vh] ">
+        <Center className="w-60vw sm:w-50vw md:w-40vw xl:w-30vw border-980-md  shadowNarrowLoose rounded-[1.6vh] ">
           {isLoading && (
             <Center className="skeleton w-full h-full rounded-[1.5vh] text-transparent min-h-[40vh] bg-radial4 animate-pulse duration-500">
               <BouncingDots />
@@ -60,7 +60,7 @@ export function ExpandableImage(image: { src: string; caption: string }) {
               src={image.src}
               alt={image.caption}
               objectFit="contain"
-              className="rounded-[1.1vh] max-w-90vw max-h-[90svh] "
+              className="rounded-[1.1vh] max-w-90vw max-h-[90svh]"
             />
           </Box>
 

@@ -14,8 +14,8 @@ export default function HoverMenu({
   mainText,
   textSize = "text-sm md:text-md",
   className,
-  bgSettings = "bg-col-800 shadow-md",
-  textColor = "text-col-200",
+  bgSettings = "bg-yellow-300",
+  textColor = "text-col-900",
   iconSize = "text-lg",
   childLinkPadding = "px-[2vh] py-[0.5vh]",
   collapsedIcon = BiChevronRight,
@@ -50,13 +50,19 @@ export default function HoverMenu({
   return (
     <Flex className={className}>
       <div
-        className="flex flex-col relative items-start"
+        className={`flex flex-col relative items-start ${bgSettings} ${
+          isDropDownOpen ? "rounded-b-none " : ""
+        }`}
         style={{ zIndex: 100 }}
         onMouseEnter={() => setIsDropDownOpen(true)}
         onMouseLeave={() => setIsDropDownOpen(false)}
         ref={containerRef}
       >
-        <Flex className="w-full justify-center bg-col-800 border-900-sm shadowNarrowTight">
+        <Flex
+          className={`w-full justify-center shadowNarrowTight ${
+            isDropDownOpen ? "rounded-b-none " : "border-900-sm"
+          }`}
+        >
           <HStack
             className={`md:gap-2vh  ${childLinkPadding} hover:cursor-pointer items-center justify-between ${
               isDropDownOpen ? "rounded-b-none" : ""
@@ -87,12 +93,13 @@ export default function HoverMenu({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -25 }}
               transition={{ duration: 0.4 }}
-              className={`absolute ${topPosition} shadowNarroLoose ${
+              className={`absolute w-full ${topPosition} shadowNarroLoose ${
                 align === "left" ? "left-0" : "right-0"
               } w-auto`}
+              style={{ zIndex: 200 }}
             >
               <FlexFull
-                className={`${bgSettings} ${textColor} overflow-y-auto transition-500 justify-start`}
+                className={`${bgSettings} ${textColor} rounded-t-none w-full overflow-y-auto transition-500 justify-start`}
               >
                 <VStackFull
                   gap="gap-[0px]"
