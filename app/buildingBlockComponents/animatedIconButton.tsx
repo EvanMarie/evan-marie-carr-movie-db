@@ -38,12 +38,12 @@ bg-gradient-to-r from-yellow-300/80 via-yellow-400/80 to-yellow-300/80 shadowNar
   const smallClassName =
     "h-[3vh] px-1vh text-[1.6vh] md:text-[1.8vh]  leading-tight";
   const normalClassName =
-    "h-3.5vh md:h-[4vh] px-1vh text-[1.8vh] md:text-[2.2vh] leading-tight";
+    "h-3.2vh md:h-[3.5svh] px-1vh text-[1.8vh] md:text-[2.2vh] leading-tight";
   const displayClassName = `${baseClassName} ${
     buttonSize === "small" ? smallClassName : normalClassName
   } ${className}`;
 
-  const normalIconClassName = "text-[2.5vh] md:text-[3vh]";
+  const normalIconClassName = "text-[2.3vh] md:text-[2.7vh]";
   const smallIconClassName = "text-[2.5vh] md:text-[2.7vh]";
   const displayIconClassName = `${
     buttonSize === "small" ? smallIconClassName : normalIconClassName

@@ -53,7 +53,9 @@ export default function Index() {
     setCurrentPage(page);
   }, [page]);
 
-  // Scroll to top when the current page changes
+  {
+    /* *********  Scroll to top when the current page changes ********* */
+  }
   useEffect(() => {
     if (containerRef.current) {
       containerRef.current.scrollTo({ top: 0, behavior: "smooth" });
@@ -64,13 +66,16 @@ export default function Index() {
     return <p>No movies found.</p>;
   }
 
+  {
+    /* ****************** First and Last Page Definitions ****************** */
+  }
   const nextPage =
     currentPage < movies.totalPages ? currentPage + 1 : currentPage;
   const prevPage = currentPage > 1 ? currentPage - 1 : currentPage;
 
   return (
     <VStackFull className="h-[100svh] overflow-hidden">
-      <MoviesHeaderBar scrollRef = {containerRef}/>
+      <MoviesHeaderBar scrollRef={containerRef} />
 
       {/* ****************** Movie Images ****************** */}
       <FlexFull
