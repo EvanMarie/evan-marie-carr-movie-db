@@ -25,6 +25,7 @@ import AnimatedText from "~/buildingBlockComponents/animatedText";
 import Box from "~/buildingBlockComponents/box";
 import Tooltip from "~/buildingBlockComponents/tooltip";
 import PaginationControls from "./components/paginationControls";
+import MoviesHeaderBar from "./components/moviesHeaderBar";
 
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);
@@ -69,28 +70,7 @@ export default function Index() {
 
   return (
     <VStackFull className="h-[100svh] overflow-hidden">
-      <HStackFull className="fixed inset-0 h-[5svh] justify-between items-center bg-col-880 bg-diagonal3op75 rounded-none z-50 px-1vh">
-        <NavLink to="/">
-          <HStack
-            className="items-center hover:cursor-pointer"
-            gap="gap-1vh sm:gap-1.5vh"
-          >
-            <Box className="rounded-full border-900-md shadowNarrowLooser hover:cursor-pointer">
-              <Image
-                src="/images/movie-reel-yellow.webp"
-                alt="Movie Reel"
-                className="h-3.5vh"
-              />
-            </Box>
-            <AnimatedText text="Take Me to the Movies" isScale />
-          </HStack>
-        </NavLink>
-      </HStackFull>
-      <ScrollProgressBar
-        containerRef={containerRef}
-        position="absolute top-[5svh]"
-        rounded="rounded-none"
-      />
+      <MoviesHeaderBar scrollRef = {containerRef}/>
 
       {/* ****************** Movie Images ****************** */}
       <FlexFull

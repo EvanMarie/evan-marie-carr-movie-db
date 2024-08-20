@@ -15,7 +15,7 @@ const ScrollProgressBar: React.FC<ScrollProgressBarProps> = ({
   containerRef,
   position = "absolute inset-0",
   color = "bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-300",
-  height = "h-0.6vh",
+  height = "h-0.5vh",
   trackColor = "bg-col-950",
   rounded = "rounded-0.7vh",
 }) => {
@@ -40,7 +40,7 @@ const ScrollProgressBar: React.FC<ScrollProgressBarProps> = ({
 
   return (
     <FlexFull
-      className={`${position} h-fit ${trackColor} insetShadowSm ${rounded} z-50`}
+      className={`${position} h-fit ${trackColor} shadowNarrowNormal ${rounded} z-50`}
     >
       <motion.div
         ref={scrollRef}
