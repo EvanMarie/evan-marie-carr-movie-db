@@ -18,17 +18,25 @@ export default function PaginationControls({
   nextPage,
   totalPages,
   numResults,
+  onFirstPage,
+  onPreviousPage,
+  onNextPage,
+  onLastPage,
 }: {
   currentPage: number;
   prevPage: number;
   nextPage: number;
   totalPages: number;
   numResults: number;
+  onFirstPage: () => void;
+  onPreviousPage: () => void;
+  onNextPage: () => void;
+  onLastPage: () => void;
 }) {
   const isFirstPage = currentPage <= 1;
   const isLastPage = currentPage >= totalPages;
   const textStyles =
-    "text-xs sm:text-md md:text-lg text-yellow-300 text-stroke-7-200 textShadow";
+    "text-sm sm:text-md md:text-lg text-yellow-300 text-stroke-7-200 textShadow";
   return (
     <HStackFull className="justify-between md:justify-evenly h-5vh items-center absolute bottom-0 left-0 right-0 bg-col-880 bg-diagonal3op75 rounded-none px-1vh">
       <Transition className="overflow-visible">
@@ -40,7 +48,7 @@ export default function PaginationControls({
             placement="top"
           >
             <AnimatedIconButton
-              link={`?page=1`} // Go to the first page
+              onClick={onFirstPage}
               text=""
               isDisabled={isFirstPage}
               iconLeft={DoubleLeftArrowIcon}
@@ -55,7 +63,7 @@ export default function PaginationControls({
             placement="top"
           >
             <AnimatedIconButton
-              link={`?page=${prevPage}`}
+              onClick={onPreviousPage}
               isDisabled={isFirstPage}
               text=""
               iconLeft={ArrowLeftIcon}
@@ -80,7 +88,7 @@ export default function PaginationControls({
             placement="top"
           >
             <AnimatedIconButton
-              link={`?page=${nextPage}`}
+              onClick={onNextPage}
               text=""
               isDisabled={isLastPage}
               iconRight={ArrowRightIcon}
@@ -93,7 +101,7 @@ export default function PaginationControls({
             placement="top"
           >
             <AnimatedIconButton
-              link={`?page=${totalPages}`}
+              onClick={onLastPage}
               isDisabled={isLastPage}
               text=""
               iconRight={DoubleRightArrowIcon}

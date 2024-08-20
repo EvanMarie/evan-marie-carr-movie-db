@@ -41,20 +41,23 @@ export default function ViewMovie() {
         <FlexFull className="bg-500-radial6op50 sm:border-900-md sm:shadowNarrowNormal h-full rounded-none lg:rounded-[1vh]">
           <Box className="absolute top-1vh right-1vh sm:top-2vh sm:right-2vh">
             <AnimatedIconButton
-              onClick={() => navigate(from || "/movies")}
+              onClick={() => navigate(-1)}
               text=""
               iconLeft={CloseIcon}
             />
           </Box>
           <FlexFull className="h-full overflow-y-auto border-900-md overflow-x-hidden insetShadowXxl">
-            <VStackFull className="px-1vh py-2vh sm:p-3vh md:p-4vh lg:px-5vh xl:p-1.5vh xxl:px-2vh">
-              <FlexFull className="flex-col xl:flex-row xl:gap-2vh items-center xl:items-center justify-start xl:justify-center h-full">
+            <FlexFull className="px-1vh py-2vh sm:p-3vh md:p-4vh lg:px-5vh xl:p-1.5vh xxl:px-2vh">
+              <VStackFull
+                className="flex-col xl:flex-row xl:gap-2vh items-center xl:items-center justify-start xl:justify-center h-full"
+                gap="gap-2vh"
+              >
                 <ExpandableImage
                   src={movie.posterUrl || imageFallback}
                   caption={movie.title}
                 />
                 <VStackFull className="p-1vh h-full justify-between">
-                  <Text className="text-yellow-300 textShadow text-xl">
+                  <Text className="text-yellow-300 text-shadow-8-200 textShadow text-xl md:text-mega-normal">
                     {movie.title || "I ain't go no movie!"}
                   </Text>
 
@@ -90,6 +93,7 @@ export default function ViewMovie() {
                       <FilmInfoWrap
                         heading="genres"
                         items={movie?.genres?.map((genre) => genre.title)}
+                        isGenres
                       />
 
                       {/* ********************** DIRECTORS ********************** */}
@@ -110,15 +114,15 @@ export default function ViewMovie() {
                   </VStackFull>
                   <FlexFull className="pb-1vh pt-3vh justify-center">
                     <AnimatedIconButton
-                      onClick={() => navigate(from || "/movies")}
+                      onClick={() => navigate(-1)}
                       iconLeft={CloseIcon}
                       text="close"
                       iconRotation="group-hover:rotate-180"
                     />
                   </FlexFull>
                 </VStackFull>
-              </FlexFull>
-            </VStackFull>
+              </VStackFull>
+            </FlexFull>
           </FlexFull>
         </FlexFull>
       </Transition>

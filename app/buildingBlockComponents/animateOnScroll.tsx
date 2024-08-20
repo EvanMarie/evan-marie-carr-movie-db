@@ -43,7 +43,7 @@ interface Props {
 const AnimatedComponent: React.FC<Props> = ({
   children,
   animation = "slideInY",
-  duration = 1,
+  duration = 0.5,
   triggerPercent = 0.2,
   xOffset = "40vw",
   yOffset = "20vh",

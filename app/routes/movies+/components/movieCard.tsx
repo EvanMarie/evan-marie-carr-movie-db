@@ -25,19 +25,13 @@ export default function MovieCard({
   const handleImageLoad = () => {
     setIsLoading(false);
   };
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-
-  const from = `${location.pathname}${
-    searchParams.toString() ? "?" + searchParams.toString() : ""
-  }`;
 
   return (
     <AnimatedComponent>
       <Transition>
         <NavLink
           className="flex w-85vw sm:w-45vw md:w-30vw xl:w-20vw"
-          to={`/movies/${movie.id}?from=${from}`}
+          to={`/movies/${movie.id}`}
         >
           <motion.div
             className="flex w-full h-full"

@@ -38,13 +38,13 @@ export default function AnimatedIconButton({
   const baseClassName = `bg-yellow-300 hover:bg-yellow-400 text-col-900 text-stroke-8-900
 bg-gradient-to-r from-yellow-300/80 via-yellow-400/80 to-yellow-300/80 shadowNarrowTight border-900-md transition-300`;
   const smallClassName = `h-[3vh] text-[1.6vh] md:text-[1.8vh] leading-tight ${buttonPadding}`;
-  const normalClassName = `h-3.2vh md:h-[3.5svh] text-[1.8vh] md:text-[2.2vh] leading-tight ${buttonPadding}`;
+  const normalClassName = `h-3.2vh md:h-[3.5svh] text-[1.8vh] md:text-[2vh] leading-tight ${buttonPadding}`;
   const displayClassName = `${baseClassName} ${
     buttonSize === "small" ? smallClassName : normalClassName
   } ${className}`;
 
-  const normalIconClassName = "text-[2.3vh] md:text-[2.7vh]";
-  const smallIconClassName = "text-[2.5vh] md:text-[2.7vh]";
+  const normalIconClassName = "text-[2.2vh] md:text-[2.5vh]";
+  const smallIconClassName = "text-[2vh] md:text-[2.3vh]";
   const displayIconClassName = `${
     buttonSize === "small" ? smallIconClassName : normalIconClassName
   } ${iconClassName}`;
@@ -72,7 +72,7 @@ bg-gradient-to-r from-yellow-300/80 via-yellow-400/80 to-yellow-300/80 shadowNar
               className={`${
                 isDisabled ? "hover:cursor-default" : "hover:cursor-pointer"
               }  ${displayClassName} items-center`}
-              gap="gap-0.2vh"
+              gap="gap-0.5vh"
             >
               {iconLeft && (
                 <Icon
@@ -120,7 +120,7 @@ bg-gradient-to-r from-yellow-300/80 via-yellow-400/80 to-yellow-300/80 shadowNar
             className={`${
               isDisabled ? "hover:cursor-default" : "hover:cursor-pointer"
             }  ${displayClassName} items-center`}
-            gap="gap-0.2vh"
+            gap="gap-0.5vh"
           >
             {iconLeft && (
               <Icon

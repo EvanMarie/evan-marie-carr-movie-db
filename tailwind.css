@@ -12,6 +12,10 @@
   scrollbar-width: thin;
 }
 
+html {
+  background-color: rgb(4, 63, 97);
+}
+
 svg {
   border-radius: none;
 }

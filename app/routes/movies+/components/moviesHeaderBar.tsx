@@ -8,6 +8,9 @@ import ScrollProgressBar from "~/buildingBlockComponents/scrollProgressBar";
 import { Genre } from "../interfaces/genre";
 import HoverMenu from "~/buildingBlockComponents/hoverMenu";
 import { motion } from "framer-motion";
+import Input from "~/buildingBlockComponents/input";
+import Flex from "~/buildingBlockComponents/flex";
+import Text from "~/buildingBlockComponents/text";
 
 export default function MoviesHeaderBar({
   scrollRef,
@@ -57,11 +60,19 @@ export default function MoviesHeaderBar({
             />
           </HStack>
         </NavLink>
+        <Flex className="hidden xl:flex h-fit">
+          <HStack className="h-fit items-center">
+            <Text className="text-yellow-300 text-nowrap text-stroke-7-200 text-lg">
+              Search Title
+            </Text>
+            <Input className="w-20vh" />
+          </HStack>
+        </Flex>
         <HoverMenu mainText={selectedGenre || "All Genres"} className="w-20vh">
           {genresWithoutSelected.map((genre, index) => (
             <motion.button
               key={index}
-              className="w-full px-1vh py-0.5vh text-sm md:text-md text-left hover:bg-col-150"
+              className="w-full px-1vh py-0.5vh text-sm md:text-md text-left text-stroke-6-900 bg-transparent hover:bg-col-450 transition-300"
               onClick={() => {
                 setCurrentPage(1);
                 genre === "All Genres"

@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import {
   ClientLoaderFunctionArgs,
+  json,
   useLoaderData,
   useNavigate,
+  useSearchParams,
 } from "@remix-run/react";
 import VStackFull from "~/buildingBlockComponents/vStackFull";
 import Wrap from "~/buildingBlockComponents/wrap";
@@ -16,7 +18,9 @@ import { GenreResponse } from "./interfaces/genre";
 import Center from "~/buildingBlockComponents/center";
 import VStack from "~/buildingBlockComponents/vStack";
 import AnimatedIconButton from "~/buildingBlockComponents/animatedIconButton";
-import { GiReturnArrow } from "react-icons/gi";
+import { TiArrowBackOutline } from "react-icons/ti";
+import HStack from "~/buildingBlockComponents/hStack";
+import { PiSmileyXEyesLight } from "react-icons/pi";
 
 /* ************************ CLIENT LOADER ************************ */
 
@@ -28,7 +32,10 @@ export const clientLoader = async ({ request }: ClientLoaderFunctionArgs) => {
   try {
     const movies = await fetchMovies(page, selectedGenre);
     const genres = await fetchGenres();
-    return { movies, page, genres };
+    return json(
+      { movies, page, genres },
+      { headers: { "Cache-Control": "max-age=300" } }
+    );
   } catch (error) {
     console.error("Loader error:", error);
     throw new Response("Failed to load movies", { status: 500 });
@@ -46,26 +53,31 @@ export default function Index() {
   }>();
 
   const navigate = useNavigate();
-  const [currentPage, setCurrentPage] = useState(page);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [currentPage, setCurrentPage] = useState(searchParams.get("page") || 1);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [selectedGenre, setSelectedGenre] = useState("All Genres");
+  const [selectedGenre, setSelectedGenre] = useState(
+    searchParams.get("genre") || ""
+  );
+
+  /* ************************ MONITOR TOTAL RESULTS  ************************ */
   const numAllMoviesAllGenres = genres.data.reduce(
     (acc, genre) => acc + genre.movies.length,
     0
   );
-
   const numResults =
-    selectedGenre === "All Genres"
+    selectedGenre === ""
       ? numAllMoviesAllGenres
       : genres.data.find((genre) => genre.title === selectedGenre)?.movies
           .length;
 
-  /* ************************ CURRENT PAGE & GENRE  ************************ */
+  const state = { genre: selectedGenre, page: String(currentPage) };
+
+  /* ************************ CURRENT PAGE & GENRE STATE ************************ */
+
   useEffect(() => {
-    setCurrentPage(page);
-    selectedGenre !== "All Genres" &&
-      navigate(`/movies?genre=${selectedGenre}&page=${page}`);
-  }, [page, selectedGenre]);
+    setSearchParams(state);
+  }, [selectedGenre, currentPage]);
 
   {
     /* ************************  SCROLL TO TOP ************************ */
@@ -76,16 +88,20 @@ export default function Index() {
     }
   }, [currentPage]);
 
-  /* ************************  NO MOVIES ************************ */
+  /* ************************  NO MOVIES FOUND ************************ */
   if (!movies || !Array.isArray(movies.data) || movies.data.length === 0) {
     return (
       <Center className="h-[100svh] w-full">
         <VStack gap="gap-5vh">
           <h2 className="blockLetters text-yellow-300 textFogXs">
+            Oh, Snippity SNAPS!
+          </h2>
+          <h2 className="blockLetters text-yellow-300 textFogXs">
             No Movies Found
           </h2>
           <AnimatedIconButton
-            iconLeft={GiReturnArrow}
+            iconRotation="group-hover:-rotate-30"
+            iconLeft={TiArrowBackOutline}
             text="Back to Movies"
             link="/movies"
           />{" "}
@@ -98,8 +114,11 @@ export default function Index() {
     /* ************************ FIRST / LAST PAGE ************************ */
   }
   const nextPage =
-    currentPage < movies.totalPages ? currentPage + 1 : currentPage;
-  const prevPage = currentPage > 1 ? currentPage - 1 : currentPage;
+    Number(currentPage) < movies.totalPages
+      ? Number(currentPage) + 1
+      : currentPage;
+  const prevPage =
+    Number(currentPage) > 1 ? Number(currentPage) - 1 : currentPage;
 
   return (
     /* ************************ HEADER COMPONENT ************************ */
@@ -125,9 +144,13 @@ export default function Index() {
 
       {/* ****************** PAGINATION FOOTER ****************** */}
       <PaginationControls
-        currentPage={currentPage}
-        prevPage={prevPage}
-        nextPage={nextPage}
+        onFirstPage={() => setCurrentPage(1)}
+        onPreviousPage={() => setCurrentPage(prevPage)}
+        onNextPage={() => setCurrentPage(nextPage)}
+        onLastPage={() => setCurrentPage(movies.totalPages)}
+        currentPage={Number(currentPage)}
+        prevPage={Number(prevPage)}
+        nextPage={Number(nextPage)}
         totalPages={movies.totalPages}
         numResults={numResults || 0}
       />

@@ -15,7 +15,7 @@ export default function HoverMenu({
   textSize = "text-sm md:text-md",
   className,
   bgSettings = "bg-yellow-300",
-  textColor = "text-col-900",
+  textColor = "text-col-900 text-stroke-6-900",
   iconSize = "text-lg",
   childLinkPadding = "px-[2vh] py-[0.5vh]",
   collapsedIcon = BiChevronRight,
