@@ -1666,7 +1666,7 @@ export default {
     plugin(function ({ addBase, theme }) {
       addBase({
         ".defaultOverlay": {
-          backgroundColor: theme("colors.col.850"), // Accessing your theme colors
+          backgroundColor: theme("colors.col.770"), // Accessing your theme colors
           backdropFilter: "blur(4px)", // Example - use 'backdrop-blur-md' directly if appropriate
         },
         ".insetOverlay": {

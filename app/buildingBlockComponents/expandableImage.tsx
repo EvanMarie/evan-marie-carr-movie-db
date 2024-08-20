@@ -12,6 +12,7 @@ import Icon from "./icon";
 import Image from "./image";
 import Flex from "./flex";
 import AnimatedIconButton from "./animatedIconButton";
+import Box from "./box";
 
 export function ExpandableImage(image: { src: string; caption: string }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,13 +54,15 @@ export function ExpandableImage(image: { src: string; caption: string }) {
         setModalOpen={setIsOpen}
         onClose={() => setIsOpen(false)}
       >
-        <VStack gap="gap-3vh">
-          <Image
-            src={image.src}
-            alt={image.caption}
-            objectFit="contain"
-            className="rounded-[1.1vh] max-w-90vw max-h-[90svh] border-900-md shadowNarrowLooser"
-          />
+        <VStack gap="gap-3vh" className="p-1vh">
+          <Box className="border-900-md shadowNarrowLooser rounded-[1.2vh]">
+            <Image
+              src={image.src}
+              alt={image.caption}
+              objectFit="contain"
+              className="rounded-[1.1vh] max-w-90vw max-h-[90svh] "
+            />
+          </Box>
 
           <FlexFull className="justify-center">
             <AnimatedIconButton

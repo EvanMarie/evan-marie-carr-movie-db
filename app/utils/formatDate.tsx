@@ -2,10 +2,14 @@ export default function FormatDate({
   inputDate,
   format = "number",
   dateOnly = false,
+  fullYear = true, // Set default to true for full year
+  fileNameFormat = false,
 }: {
   inputDate: Date | string | null | undefined;
   format?: "text" | "number";
   dateOnly?: boolean;
+  fullYear?: boolean;
+  fileNameFormat?: boolean;
 }): string {
   if (!inputDate) {
     return "Invalid Date";
@@ -16,21 +20,38 @@ export default function FormatDate({
     return "Invalid Date";
   }
 
-  // Decide the format based on the format argument
+  const year = fullYear
+    ? date.getFullYear().toString()
+    : date.getFullYear().toString().slice(-2);
+
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const day = date.getDate().toString().padStart(2, "0");
+
+  if (fileNameFormat) {
+    return `${month}-${day}-${year}`;
+  }
+
+  if (dateOnly) {
+    if (format === "text") {
+      const datePart = new Intl.DateTimeFormat("en-US", {
+        month: "long", // Full month name
+        day: "2-digit",
+        year: "numeric", // Full year
+      }).format(date);
+      return datePart;
+    }
+    return `${month}/${day}/${year}`;
+  }
+
   if (format === "number") {
-    // Format the date as mm/dd/yy hh:mm AM/PM
-    const month = date.getMonth() + 1; // getMonth() is zero-based
-    const day = date.getDate();
-    const year = date.getFullYear().toString().slice(-2); // Get last two digits of year
     const hours = date.getHours();
     const minutes = date.getMinutes();
     const ampm = hours >= 12 ? "PM" : "AM";
-    const formattedHour = hours % 12 || 12; // Convert to 12-hour format
-    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+    const formattedHour = hours % 12 || 12;
+    const formattedMinutes = minutes.toString().padStart(2, "0");
 
     return `${month}/${day}/${year} ${formattedHour}:${formattedMinutes} ${ampm}`;
   } else {
-    // Return the date in text format as it currently does
     const datePart = new Intl.DateTimeFormat("en-US", {
       month: "short",
       day: "2-digit",
@@ -42,10 +63,6 @@ export default function FormatDate({
       minute: "2-digit",
       hour12: true,
     }).format(date);
-
-    if (dateOnly) {
-      return datePart;
-    }
 
     return `${datePart} ${timePart}`;
   }
