@@ -10,7 +10,12 @@ import Wrap from "~/buildingBlockComponents/wrap";
 import MovieCard from "./components/movieCard";
 import { fetchMovies } from "~/utils/movies-api";
 import { MoviesResponse } from "./interfaces/movieResponse";
-import { ArrowLeftIcon, ArrowRightIcon } from "styles";
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  DoubleLeftArrowIcon,
+  DoubleRightArrowIcon,
+} from "styles";
 import FlexFull from "~/buildingBlockComponents/flexFull";
 import Flex from "~/buildingBlockComponents/flex";
 import HStack from "~/buildingBlockComponents/hStack";
@@ -18,6 +23,8 @@ import Icon from "~/buildingBlockComponents/icon";
 import Image from "~/buildingBlockComponents/image";
 import AnimatedText from "~/buildingBlockComponents/animatedText";
 import Box from "~/buildingBlockComponents/box";
+import Tooltip from "~/buildingBlockComponents/tooltip";
+import PaginationControls from "./components/paginationControls";
 
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);
@@ -75,7 +82,6 @@ export default function Index() {
                 className="h-3.5vh"
               />
             </Box>
-
             <AnimatedText text="Take Me to the Movies" isScale />
           </HStack>
         </NavLink>
@@ -99,31 +105,13 @@ export default function Index() {
       </FlexFull>
 
       {/* ****************** Pagination controls ****************** */}
-      <HStackFull className="justify-evenly h-5vh items-center absolute bottom-0 left-0 right-0 bg-col-880 bg-diagonal3op75 rounded-none">
-        <Flex className="pt-0.5vh">
-          <AnimatedIconButton
-            link={`?page=${prevPage}`}
-            isDisabled={currentPage <= 1}
-            text="Previous"
-            iconLeft={ArrowLeftIcon}
-            buttonSize="small"
-            iconRotation="group-hover:rotate-30"
-          />
-        </Flex>
-        <Text className="text-col-200 text-stroke-8-200 md:text-lg textShadow">
-          Page {currentPage} of {movies.totalPages}
-        </Text>
-        <Flex className="pt-0.5vh">
-          <AnimatedIconButton
-            link={`?page=${nextPage}`}
-            isDisabled={currentPage >= movies.totalPages}
-            text="Next"
-            iconRight={ArrowRightIcon}
-            buttonSize="small"
-            iconRotation="group-hover:-rotate-30"
-          />
-        </Flex>
-      </HStackFull>
+      <PaginationControls
+        currentPage={currentPage}
+        prevPage={prevPage}
+        nextPage={nextPage}
+        totalPages={movies.totalPages}
+        movies={movies}
+      />
     </VStackFull>
   );
 }

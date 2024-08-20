@@ -52,7 +52,11 @@ bg-gradient-to-r from-yellow-300/80 via-yellow-400/80 to-yellow-300/80 shadowNar
   return (
     <>
       {link ? (
-        <NavLink to={link} className="group" target={target}>
+        <NavLink
+          to={link}
+          className={`group ${isDisabled && "opacity-30"}`}
+          target={target}
+        >
           <motion.button
             disabled={isDisabled}
             whileHover={{
@@ -65,24 +69,34 @@ bg-gradient-to-r from-yellow-300/80 via-yellow-400/80 to-yellow-300/80 shadowNar
             }}
           >
             <HStack
-              className={` hover:cursor-pointer ${displayClassName} items-center`}
+              className={`${
+                isDisabled ? "hover:cursor-default" : "hover:cursor-pointer"
+              }  ${displayClassName} items-center`}
               gap="gap-0.2vh"
             >
               {iconLeft && (
                 <Icon
                   icon={iconLeft}
-                  hoverCursor="cursor-pointer"
+                  hoverCursor={
+                    isDisabled ? "hover:cursor-default" : "hover:cursor-pointer"
+                  }
                   iconClassName={displayIconClassName}
-                  containerClassName={`${iconRotation} transition-400`}
+                  containerClassName={`${
+                    !isDisabled && iconRotation
+                  } transition-400`}
                 />
               )}
               {text && <Text>{text}</Text>}
               {iconRight && (
                 <Icon
                   icon={iconRight}
-                  hoverCursor="cursor-pointer"
+                  hoverCursor={
+                    isDisabled ? "hover:cursor-default" : "hover:cursor-pointer"
+                  }
                   iconClassName={displayIconClassName}
-                  containerClassName={`${iconRotation} transition-400`}
+                  containerClassName={`${
+                    !isDisabled && iconRotation
+                  } transition-400`}
                 />
               )}
             </HStack>
@@ -98,29 +112,39 @@ bg-gradient-to-r from-yellow-300/80 via-yellow-400/80 to-yellow-300/80 shadowNar
             scale: 0.9,
             transition: { duration: 0.4 },
           }}
-          className="group"
+          className={`"group" ${isDisabled && "opacity-30"}`}
           onClick={onClick}
           type={type}
         >
           <HStack
-            className={` hover:cursor-pointer  ${displayClassName} items-center`}
+            className={`${
+              isDisabled ? "hover:cursor-default" : "hover:cursor-pointer"
+            }  ${displayClassName} items-center`}
             gap="gap-0.2vh"
           >
             {iconLeft && (
               <Icon
-                hoverCursor="cursor-pointer"
+                hoverCursor={
+                  isDisabled ? "hover:cursor-default" : "hover:cursor-pointer"
+                }
                 icon={iconLeft}
                 iconClassName={displayIconClassName}
-                containerClassName={`${iconRotation} transition-400`}
+                containerClassName={`${
+                  !isDisabled && iconRotation
+                } transition-400`}
               />
             )}
             {text && <Text>{text}</Text>}
             {iconRight && (
               <Icon
-                hoverCursor="cursor-pointer"
+                hoverCursor={
+                  isDisabled ? "hover:cursor-default" : "hover:cursor-pointer"
+                }
                 icon={iconRight}
                 iconClassName={displayIconClassName}
-                containerClassName={`${iconRotation} transition-400`}
+                containerClassName={`${
+                  !isDisabled && iconRotation
+                } transition-400`}
               />
             )}
           </HStack>
