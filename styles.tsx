@@ -1,3 +1,4 @@
+import { BiExpandAlt } from "react-icons/bi";
 import { BsCalendar3 } from "react-icons/bs";
 import { IoCloseCircleOutline, IoHomeOutline } from "react-icons/io5";
 import {
@@ -19,3 +20,4 @@ export const ArrowRightIcon = RiArrowRightSLine;
 export const DoubleRightArrowIcon = RiArrowRightDoubleFill;
 export const DoubleLeftArrowIcon = RiArrowLeftDoubleFill;
 export const HomeIcon = IoHomeOutline;
+export const ExpandIcon = BiExpandAlt

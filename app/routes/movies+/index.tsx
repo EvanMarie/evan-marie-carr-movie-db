@@ -9,6 +9,9 @@ import FlexFull from "~/buildingBlockComponents/flexFull";
 import PaginationControls from "./components/paginationControls";
 import MoviesHeaderBar from "./components/moviesHeaderBar";
 
+
+/* ************************ CLIENT LOADER ************************ */
+
 export const clientLoader = async ({ request }: ClientLoaderFunctionArgs) => {
   const url = new URL(request.url);
   const page = Number(url.searchParams.get("page")) || 1;

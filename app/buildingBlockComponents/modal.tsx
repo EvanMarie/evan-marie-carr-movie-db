@@ -2,7 +2,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import React from "react";
 import Portal from "./portal";
-import useEscapeKey from "~/utils/useEscapeKey";
+import useEscapeKey from "~/hooks/useEscapePress";
 
 interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   style?: React.CSSProperties;
