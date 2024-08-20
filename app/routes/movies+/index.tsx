@@ -1,29 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { LoaderFunction } from "@remix-run/node";
-import { NavLink, useLoaderData } from "@remix-run/react";
-import HStackFull from "~/buildingBlockComponents/hStackFull";
+import { useLoaderData } from "@remix-run/react";
 import VStackFull from "~/buildingBlockComponents/vStackFull";
-import ScrollProgressBar from "~/buildingBlockComponents/scrollProgressBar";
-import AnimatedIconButton from "~/buildingBlockComponents/animatedIconButton";
-import Text from "~/buildingBlockComponents/text";
 import Wrap from "~/buildingBlockComponents/wrap";
 import MovieCard from "./components/movieCard";
 import { fetchMovies } from "~/utils/movies-api";
 import { MoviesResponse } from "./interfaces/movieResponse";
-import {
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  DoubleLeftArrowIcon,
-  DoubleRightArrowIcon,
-} from "styles";
 import FlexFull from "~/buildingBlockComponents/flexFull";
-import Flex from "~/buildingBlockComponents/flex";
-import HStack from "~/buildingBlockComponents/hStack";
-import Icon from "~/buildingBlockComponents/icon";
-import Image from "~/buildingBlockComponents/image";
-import AnimatedText from "~/buildingBlockComponents/animatedText";
-import Box from "~/buildingBlockComponents/box";
-import Tooltip from "~/buildingBlockComponents/tooltip";
 import PaginationControls from "./components/paginationControls";
 import MoviesHeaderBar from "./components/moviesHeaderBar";
 

@@ -10,6 +10,7 @@ import FlexFull from "~/buildingBlockComponents/flexFull";
 import BouncingDots from "~/buildingBlockComponents/bouncingDots";
 import { Movie } from "../interfaces/movie";
 import Transition from "~/buildingBlockComponents/transition";
+import { motion } from "framer-motion";
 
 export default function MovieCard({
   movie,
@@ -27,7 +28,17 @@ export default function MovieCard({
   return (
     <AnimatedComponent>
       <Transition>
-        <Flex className="w-85vw sm:w-45vw md:w-30vw xl:w-20vw">
+        <motion.div
+          className="flex w-85vw sm:w-45vw md:w-30vw xl:w-20vw"
+          whileHover={{
+            scale: 1.01,
+            transition: { duration: 0.4 },
+          }}
+          whileTap={{
+            scale: 0.95,
+            transition: { duration: 0.4 },
+          }}
+        >
           <FlexFull
             className={
               index === 0 || index % 2 === 0
@@ -56,7 +67,7 @@ export default function MovieCard({
               </Text>
             </VStackFull>
           </FlexFull>
-        </Flex>
+        </motion.div>
       </Transition>
     </AnimatedComponent>
   );

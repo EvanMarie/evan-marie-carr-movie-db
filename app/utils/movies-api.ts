@@ -34,3 +34,64 @@ export const fetchMovieById = async (id: string) => {
   }
 };
 
+
+export const fetchGenres = async () => {
+  try {
+    const response = await apiClient.get('/genres/movies');
+    return response.data;
+  } catch (error: any) {
+    console.error('Error fetching genres:', error.response?.data || error.message || error);
+    throw new Error('Failed to fetch genres');
+  }
+};
+
+export const fetchMovieReviews = async (id: string) => {
+  try {
+    const response = await apiClient.get(`/movies/${id}/reviews`);
+    return response.data;
+  } catch (error: any) {
+    console.error('Error fetching movie reviews:', error.response?.data || error.message || error);
+    throw new Error('Failed to fetch movie reviews');
+  }
+};
+
+export const fetchMovieCredits = async (id: string) => {
+  try {
+    const response = await apiClient.get(`/movies/${id}/credits`);
+    return response.data;
+  } catch (error: any) {
+    console.error('Error fetching movie credits:', error.response?.data || error.message || error);
+    throw new Error('Failed to fetch movie credits');
+  }
+};
+
+export const fetchPersonById = async (id: string) => {
+  try {
+    const response = await apiClient.get(`/people/${id}`);
+    return response.data;
+  } catch (error: any) {
+    console.error('Error fetching person:', error.response?.data || error.message || error);
+    throw new Error('Failed to fetch person');
+  }
+};
+
+export const fetchPersonCredits = async (id: string) => {
+  try {
+    const response = await apiClient.get(`/people/${id}/credits`);
+    return response.data;
+  } catch (error: any) {
+    console.error('Error fetching person credits:', error.response?.data || error.message || error);
+    throw new Error('Failed to fetch person credits');
+  }
+};
+
+export const fetchPersonImages = async (id: string) => {
+  try {
+    const response = await apiClient.get(`/people/${id}/images`);
+    return response.data;
+  } catch (error: any) {
+    console.error('Error fetching person images:', error.response?.data || error.message || error);
+    throw new Error('Failed to fetch person images');
+  }
+};
+
