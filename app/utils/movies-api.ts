@@ -1,4 +1,4 @@
-const BASE_URL = 'https://0kadddxyh3.execute-api.us-east-1.amazonaws.com';
+export const BASE_URL = 'https://0kadddxyh3.execute-api.us-east-1.amazonaws.com';
 
 const headers =  {
         'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJvcGVuSnd0MyIsIm5hbWUiOiJPcGVuSldUWzNdIn0.J43mgsvQlOK0zn7APkizIRkKphNIeXwtcabyKxoUnZo`,

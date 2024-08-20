@@ -1,14 +1,18 @@
 import { useEffect, useRef, useState } from "react";
-import { ClientLoaderFunctionArgs, useLoaderData } from "@remix-run/react";
+import {
+  ClientLoaderFunctionArgs,
+  useLoaderData,
+  useNavigate,
+} from "@remix-run/react";
 import VStackFull from "~/buildingBlockComponents/vStackFull";
 import Wrap from "~/buildingBlockComponents/wrap";
 import MovieCard from "./components/movieCard";
-import { fetchGenres, fetchMovies } from "~/utils/movies-api";
+import { BASE_URL, fetchGenres, fetchMovies } from "~/utils/movies-api";
 import { MoviesResponse } from "./interfaces/movieResponse";
 import FlexFull from "~/buildingBlockComponents/flexFull";
 import PaginationControls from "./components/paginationControls";
 import MoviesHeaderBar from "./components/moviesHeaderBar";
-import { Genre, GenreResponse } from "./interfaces/genre";
+import { GenreResponse } from "./interfaces/genre";
 
 /* ************************ CLIENT LOADER ************************ */
 
@@ -37,13 +41,17 @@ export default function Index() {
     genres: GenreResponse;
   }>();
 
+  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(page);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const [selectedGenre, setSelectedGenre] = useState("All Genres");
 
   /* ************************ CURRENT PAGE  ************************ */
   useEffect(() => {
     setCurrentPage(page);
-  }, [page]);
+    selectedGenre !== "All Genres" &&
+      navigate(`/movies?genre=${selectedGenre}`);
+  }, [page, selectedGenre]);
 
   {
     /* ************************  SCROLL TO TOP ************************ */
@@ -67,7 +75,11 @@ export default function Index() {
 
   return (
     <VStackFull className="h-[100svh] overflow-hidden">
-      <MoviesHeaderBar scrollRef={containerRef} genres={genres.data} />
+      <MoviesHeaderBar
+        scrollRef={containerRef}
+        genres={genres.data}
+        setSelectedGenre={setSelectedGenre}
+      />
 
       {/* ****************** MOVIE CARDS ****************** */}
       <FlexFull

@@ -11,7 +11,7 @@ import BouncingDots from "~/buildingBlockComponents/bouncingDots";
 import { Movie } from "../interfaces/movie";
 import Transition from "~/buildingBlockComponents/transition";
 import { motion } from "framer-motion";
-import { NavLink } from "@remix-run/react";
+import { NavLink, useLocation } from "@remix-run/react";
 
 export default function MovieCard({
   movie,
@@ -25,13 +25,19 @@ export default function MovieCard({
   const handleImageLoad = () => {
     setIsLoading(false);
   };
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+
+  const from = `${location.pathname}${
+    searchParams.toString() ? "?" + searchParams.toString() : ""
+  }`;
 
   return (
     <AnimatedComponent>
       <Transition>
         <NavLink
           className="flex w-85vw sm:w-45vw md:w-30vw xl:w-20vw"
-          to={`/movies/${movie.id}`}
+          to={`/movies/${movie.id}?from=${from}`}
         >
           <motion.div
             className="flex w-full h-full"

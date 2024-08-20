@@ -1,4 +1,4 @@
-import { NavLink } from "@remix-run/react";
+import { NavLink, useParams, useSearchParams } from "@remix-run/react";
 import AnimatedText from "~/buildingBlockComponents/animatedText";
 import Box from "~/buildingBlockComponents/box";
 import HStack from "~/buildingBlockComponents/hStack";
@@ -7,20 +7,22 @@ import Image from "~/buildingBlockComponents/image";
 import ScrollProgressBar from "~/buildingBlockComponents/scrollProgressBar";
 import { Genre } from "../interfaces/genre";
 import HoverMenu from "~/buildingBlockComponents/hoverMenu";
-import { useState } from "react";
-import Text from "~/buildingBlockComponents/text";
+import { motion } from "framer-motion";
 
 export default function MoviesHeaderBar({
   scrollRef,
   genres,
+  setSelectedGenre,
 }: {
   scrollRef: React.RefObject<HTMLDivElement>;
   genres: Genre[];
+  setSelectedGenre: (genre: string) => void;
 }) {
   // Convert genres to an array of genre titles for the options menu
   const genreOptions = genres.map((genre) => genre.title);
-  const [selectedGenre, setSelectedGenre] = useState("All Genres");
-  console.log("genreOptions:", genreOptions);
+  const [searchParams] = useSearchParams();
+  const selectedGenre = searchParams.get("genre");
+
   return (
     <>
       <HStackFull className="fixed inset-0 h-[5svh] justify-between items-center bg-col-880 bg-diagonal3op75 rounded-none z-50 px-1vh">
@@ -36,20 +38,28 @@ export default function MoviesHeaderBar({
                 className="h-3.5vh"
               />
             </Box>
-            <AnimatedText text="Take Me to the Movies" isScale />
+            <AnimatedText
+              text="Take Me to the Movies"
+              isScale
+              containerClassName="hidden sm:flex"
+            />
+            <AnimatedText
+              text="TMttM"
+              isScale
+              containerClassName="flex sm:hidden"
+            />
           </HStack>
         </NavLink>
-        <HoverMenu mainText={selectedGenre}>
+        <HoverMenu mainText={selectedGenre || "All Genres"} className="w-20vh">
           {genreOptions.map((genre, index) => (
-            <Text>{genre}</Text>
+            <motion.button
+              className="w-full px-1vh py-0.5vh text-sm md:text-md text-left"
+              onClick={() => setSelectedGenre(genre)}
+            >
+              {genre}
+            </motion.button>
           ))}
         </HoverMenu>
-        {/* <DropDownMenu
-          buttonText={selectedGenre}
-          options={genreOptions}
-          selectedOption={selectedGenre}
-          setSelectedOption={setSelectedGenre}
-        /> */}
       </HStackFull>
       <ScrollProgressBar
         containerRef={scrollRef}

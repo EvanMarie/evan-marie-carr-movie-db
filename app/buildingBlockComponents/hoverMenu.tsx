@@ -3,11 +3,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "@remix-run/react";
 import { BiChevronDown, BiChevronRight } from "react-icons/bi";
 import Flex from "./flex";
-import HStack from "./hStack";
 import Text from "./text";
 import Icon from "./icon";
 import FlexFull from "./flexFull";
 import VStackFull from "./vStackFull";
+import HStackFull from "./hStackFull";
 
 export default function HoverMenu({
   children,
@@ -50,7 +50,7 @@ export default function HoverMenu({
   return (
     <Flex className={className}>
       <div
-        className={`flex flex-col relative items-start ${bgSettings} ${
+        className={`flex flex-col w-full relative items-start ${bgSettings} ${
           isDropDownOpen ? "rounded-b-none " : ""
         }`}
         style={{ zIndex: 100 }}
@@ -58,13 +58,13 @@ export default function HoverMenu({
         onMouseLeave={() => setIsDropDownOpen(false)}
         ref={containerRef}
       >
-        <Flex
-          className={`w-full justify-center shadowNarrowTight ${
+        <FlexFull
+          className={`shadowNarrowTight ${
             isDropDownOpen ? "rounded-b-none " : "border-900-sm"
           }`}
         >
-          <HStack
-            className={`md:gap-2vh  ${childLinkPadding} hover:cursor-pointer items-center justify-between ${
+          <HStackFull
+            className={`gap-3vh ${childLinkPadding} hover:cursor-pointer justify-between ${
               isDropDownOpen ? "rounded-b-none" : ""
             }  `}
           >
@@ -84,8 +84,8 @@ export default function HoverMenu({
                   : `transform rotate-0 transition-transform duration-500`
               }`}
             />
-          </HStack>
-        </Flex>
+          </HStackFull>
+        </FlexFull>
         <AnimatePresence>
           {isDropDownOpen && (
             <motion.div

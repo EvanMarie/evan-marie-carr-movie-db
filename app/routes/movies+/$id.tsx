@@ -2,8 +2,9 @@ import {
   ClientLoaderFunctionArgs,
   useLoaderData,
   useNavigate,
+  useSearchParams,
 } from "@remix-run/react";
-import { fetchGenres, fetchMovieById } from "~/utils/movies-api";
+import { fetchMovieById } from "~/utils/movies-api";
 import { MovieById } from "./interfaces/movieById";
 import FlexFull from "~/buildingBlockComponents/flexFull";
 import VStackFull from "~/buildingBlockComponents/vStackFull";
@@ -29,19 +30,25 @@ clientLoader.hydrate = true;
 export default function ViewMovie() {
   const movie = useLoaderData<MovieById>();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const from = searchParams.get("from") || "";
+
   return (
-    <FlexFull className="h-[100svh] relative sm:p-1vh md:p-1.5vh bg-yellow-200/80 bg-radial4op25">
-      <Transition className="w-full sm:p-1vh" type="fadeSlideInRight">
-        <FlexFull className="bg-500-radial6op50 sm:border-900-md sm:shadowNarrowNormal h-full">
+    <FlexFull className="h-[100svh] relative lg:p-1.5vh bg-yellow-200/80 bg-radial4op25 rounded-none lg:rounded-[1vh]">
+      <Transition
+        className="w-full  rounded-none lg:rounded-[1vh]"
+        type="fadeSlideInRight"
+      >
+        <FlexFull className="bg-500-radial6op50 sm:border-900-md sm:shadowNarrowNormal h-full rounded-none lg:rounded-[1vh]">
           <Box className="absolute top-1vh right-1vh sm:top-2vh sm:right-2vh">
             <AnimatedIconButton
-              onClick={() => navigate("/movies")}
+              onClick={() => navigate(from || "/movies")}
               text=""
               iconLeft={CloseIcon}
             />
           </Box>
           <FlexFull className="h-full overflow-y-auto border-900-md overflow-x-hidden insetShadowXxl">
-            <VStackFull className="px-1vh py-2vh sm:p-3vh md:p-4vh lg:px-5vh xl:p-1vh">
+            <VStackFull className="px-1vh py-2vh sm:p-3vh md:p-4vh lg:px-5vh xl:p-1.5vh xxl:px-2vh">
               <FlexFull className="flex-col xl:flex-row xl:gap-2vh items-center xl:items-center justify-start xl:justify-center h-full">
                 <ExpandableImage
                   src={movie.posterUrl || imageFallback}
@@ -104,7 +111,7 @@ export default function ViewMovie() {
                   </VStackFull>
                   <FlexFull className="pb-1vh pt-3vh justify-center">
                     <AnimatedIconButton
-                      onClick={() => navigate("/movies")}
+                      onClick={() => navigate(from || "/movies")}
                       iconLeft={CloseIcon}
                       text="close"
                       iconRotation="group-hover:rotate-180"
