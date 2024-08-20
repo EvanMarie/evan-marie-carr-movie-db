@@ -50,7 +50,7 @@ export default function Index() {
   useEffect(() => {
     setCurrentPage(page);
     selectedGenre !== "All Genres" &&
-      navigate(`/movies?genre=${selectedGenre}`);
+      navigate(`/movies?genre=${selectedGenre}&page=${page}`);
   }, [page, selectedGenre]);
 
   {

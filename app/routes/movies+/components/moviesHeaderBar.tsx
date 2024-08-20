@@ -18,10 +18,15 @@ export default function MoviesHeaderBar({
   genres: Genre[];
   setSelectedGenre: (genre: string) => void;
 }) {
+  const [searchParams] = useSearchParams();
+  const selectedGenre = searchParams.get("genre") || "All Genres";
   // Convert genres to an array of genre titles for the options menu
   const genreOptions = genres.map((genre) => genre.title);
-  const [searchParams] = useSearchParams();
-  const selectedGenre = searchParams.get("genre");
+  genreOptions.unshift("All Genres");
+
+  const genresWithoutSelected = genreOptions.filter(
+    (genre) => genre !== selectedGenre
+  );
 
   return (
     <>
@@ -51,10 +56,15 @@ export default function MoviesHeaderBar({
           </HStack>
         </NavLink>
         <HoverMenu mainText={selectedGenre || "All Genres"} className="w-20vh">
-          {genreOptions.map((genre, index) => (
+          {genresWithoutSelected.map((genre, index) => (
             <motion.button
-              className="w-full px-1vh py-0.5vh text-sm md:text-md text-left"
-              onClick={() => setSelectedGenre(genre)}
+              key={index}
+              className="w-full px-1vh py-0.5vh text-sm md:text-md text-left hover:bg-col-150"
+              onClick={() =>
+                genre === "All Genres"
+                  ? setSelectedGenre("")
+                  : setSelectedGenre(genre)
+              }
             >
               {genre}
             </motion.button>
