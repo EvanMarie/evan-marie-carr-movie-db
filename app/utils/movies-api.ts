@@ -13,10 +13,11 @@ const apiClient = axios.create({
 export default apiClient;
 
 export const fetchMovies = async (page = 1, genre?: string) => {
+  const numMovies = 36;
   try {
     const params: any = { page };
     if (genre) params.genre = genre;
-    const response = await apiClient.get('/movies', { params });
+    const response = await apiClient.get(`/movies?limit=${numMovies}`, { params });
     return response.data;
   } catch (error: any) {
     console.error('Error fetching movies:', error.response?.data || error.message || error);
