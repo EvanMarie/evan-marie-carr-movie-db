@@ -13,6 +13,10 @@ import FlexFull from "~/buildingBlockComponents/flexFull";
 import PaginationControls from "./components/paginationControls";
 import MoviesHeaderBar from "./components/moviesHeaderBar";
 import { GenreResponse } from "./interfaces/genre";
+import Center from "~/buildingBlockComponents/center";
+import VStack from "~/buildingBlockComponents/vStack";
+import AnimatedIconButton from "~/buildingBlockComponents/animatedIconButton";
+import { GiReturnArrow } from "react-icons/gi";
 
 /* ************************ CLIENT LOADER ************************ */
 
@@ -45,8 +49,18 @@ export default function Index() {
   const [currentPage, setCurrentPage] = useState(page);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [selectedGenre, setSelectedGenre] = useState("All Genres");
+  const numAllMoviesAllGenres = genres.data.reduce(
+    (acc, genre) => acc + genre.movies.length,
+    0
+  );
 
-  /* ************************ CURRENT PAGE  ************************ */
+  const numResults =
+    selectedGenre === "All Genres"
+      ? numAllMoviesAllGenres
+      : genres.data.find((genre) => genre.title === selectedGenre)?.movies
+          .length;
+
+  /* ************************ CURRENT PAGE & GENRE  ************************ */
   useEffect(() => {
     setCurrentPage(page);
     selectedGenre !== "All Genres" &&
@@ -62,8 +76,22 @@ export default function Index() {
     }
   }, [currentPage]);
 
+  /* ************************  NO MOVIES ************************ */
   if (!movies || !Array.isArray(movies.data) || movies.data.length === 0) {
-    return <p>No movies found.</p>;
+    return (
+      <Center className="h-[100svh] w-full">
+        <VStack gap="gap-5vh">
+          <h2 className="blockLetters text-yellow-300 textFogXs">
+            No Movies Found
+          </h2>
+          <AnimatedIconButton
+            iconLeft={GiReturnArrow}
+            text="Back to Movies"
+            link="/movies"
+          />{" "}
+        </VStack>
+      </Center>
+    );
   }
 
   {
@@ -74,11 +102,13 @@ export default function Index() {
   const prevPage = currentPage > 1 ? currentPage - 1 : currentPage;
 
   return (
+    /* ************************ HEADER COMPONENT ************************ */
     <VStackFull className="h-[100svh] overflow-hidden">
       <MoviesHeaderBar
         scrollRef={containerRef}
         genres={genres.data}
         setSelectedGenre={setSelectedGenre}
+        setCurrentPage={setCurrentPage}
       />
 
       {/* ****************** MOVIE CARDS ****************** */}
@@ -99,7 +129,7 @@ export default function Index() {
         prevPage={prevPage}
         nextPage={nextPage}
         totalPages={movies.totalPages}
-        movies={movies}
+        numResults={numResults || 0}
       />
     </VStackFull>
   );

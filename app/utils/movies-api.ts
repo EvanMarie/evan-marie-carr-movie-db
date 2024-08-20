@@ -13,6 +13,7 @@ export const fetchMovies = async (page = 1, genre?: string) => {
     const params: any = { page };
     if (genre) params.genre = genre;
     params.limit = numMovies;
+
     const response = await fetch(`${BASE_URL}/movies?page=${page}&limit=${numMovies}&genre=${genre}`, {
       headers,
     });

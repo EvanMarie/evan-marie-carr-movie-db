@@ -21,7 +21,6 @@ import AnimatedIconButton from "~/buildingBlockComponents/animatedIconButton";
 
 export const clientLoader = async ({ params }: ClientLoaderFunctionArgs) => {
   const { id: movieId } = params;
-  console.log("Fetching movie with ID:", movieId);
   const movie = await fetchMovieById(movieId!);
   return movie;
 };

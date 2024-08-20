@@ -17,18 +17,20 @@ export default function PaginationControls({
   prevPage,
   nextPage,
   totalPages,
-  movies,
+  numResults,
 }: {
   currentPage: number;
   prevPage: number;
   nextPage: number;
   totalPages: number;
-  movies: MoviesResponse;
+  numResults: number;
 }) {
   const isFirstPage = currentPage <= 1;
   const isLastPage = currentPage >= totalPages;
+  const textStyles =
+    "text-xs sm:text-md md:text-lg text-yellow-300 text-stroke-7-200 textShadow";
   return (
-    <HStackFull className="justify-evenly h-5vh items-center absolute bottom-0 left-0 right-0 bg-col-880 bg-diagonal3op75 rounded-none">
+    <HStackFull className="justify-between md:justify-evenly h-5vh items-center absolute bottom-0 left-0 right-0 bg-col-880 bg-diagonal3op75 rounded-none px-1vh">
       <Transition className="overflow-visible">
         <HStack className="pt-0.5vh" gap="gap-1.5vh md:gap-2.5vh">
           {/* ****************** FIRST PAGE ****************** */}
@@ -63,8 +65,10 @@ export default function PaginationControls({
         </HStack>
       </Transition>
 
-      {/* ****************** CURRENT PAGE ****************** */}
-      <Text className="text-yellow-300 text-stroke-7-200 sm:text-md md:text-lg textShadow">
+      {/* ****************** NUM RESULTS & CURRENT PAGE ****************** */}
+
+      <Text className={textStyles}>Results: {numResults}</Text>
+      <Text className={textStyles}>
         Page {currentPage} of {totalPages}
       </Text>
 

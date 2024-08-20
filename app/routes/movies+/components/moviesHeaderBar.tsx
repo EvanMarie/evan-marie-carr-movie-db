@@ -13,10 +13,12 @@ export default function MoviesHeaderBar({
   scrollRef,
   genres,
   setSelectedGenre,
+  setCurrentPage,
 }: {
   scrollRef: React.RefObject<HTMLDivElement>;
   genres: Genre[];
   setSelectedGenre: (genre: string) => void;
+  setCurrentPage: (page: number) => void;
 }) {
   const [searchParams] = useSearchParams();
   const selectedGenre = searchParams.get("genre") || "All Genres";
@@ -60,11 +62,12 @@ export default function MoviesHeaderBar({
             <motion.button
               key={index}
               className="w-full px-1vh py-0.5vh text-sm md:text-md text-left hover:bg-col-150"
-              onClick={() =>
+              onClick={() => {
+                setCurrentPage(1);
                 genre === "All Genres"
                   ? setSelectedGenre("")
-                  : setSelectedGenre(genre)
-              }
+                  : setSelectedGenre(genre);
+              }}
             >
               {genre}
             </motion.button>

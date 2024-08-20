@@ -17,6 +17,7 @@ export default function AnimatedIconButton({
   iconClassName,
   iconRotation = "group-hover:rotate-90",
   className,
+  buttonPadding = "px-0.5vh sm:px-0.7vh",
   buttonSize = "normal",
 }: {
   link?: string;
@@ -31,14 +32,13 @@ export default function AnimatedIconButton({
   isDisabled?: boolean;
   isActive?: boolean;
   className?: string;
+  buttonPadding?: string;
   buttonSize?: "small" | "normal";
 }) {
   const baseClassName = `bg-yellow-300 hover:bg-yellow-400 text-col-900 text-stroke-8-900
 bg-gradient-to-r from-yellow-300/80 via-yellow-400/80 to-yellow-300/80 shadowNarrowTight border-900-md transition-300`;
-  const smallClassName =
-    "h-[3vh] px-1vh text-[1.6vh] md:text-[1.8vh]  leading-tight";
-  const normalClassName =
-    "h-3.2vh md:h-[3.5svh] px-1vh text-[1.8vh] md:text-[2.2vh] leading-tight";
+  const smallClassName = `h-[3vh] text-[1.6vh] md:text-[1.8vh] leading-tight ${buttonPadding}`;
+  const normalClassName = `h-3.2vh md:h-[3.5svh] text-[1.8vh] md:text-[2.2vh] leading-tight ${buttonPadding}`;
   const displayClassName = `${baseClassName} ${
     buttonSize === "small" ? smallClassName : normalClassName
   } ${className}`;
