@@ -1,22 +1,22 @@
-import { useLoaderData, useParams } from "@remix-run/react";
+import { ClientLoaderFunctionArgs, useLoaderData } from "@remix-run/react";
 import { fetchMovieById } from "~/utils/movies-api";
-import { LoaderFunctionArgs } from "@remix-run/node";
 import { MovieById } from "./interfaces/movieById";
 
-export const loader = async ({ params }: LoaderFunctionArgs) => {
+export const clientLoader = async ({ params }: ClientLoaderFunctionArgs) => {
   const { id: movieId } = params;
   console.log("Fetching movie with ID:", movieId);
   const movie = await fetchMovieById(movieId!);
   console.log(movie);
   return movie;
 };
+clientLoader.hydrate = true;
 
 export default function ViewMovie() {
   const movie = useLoaderData<MovieById>();
 
   return (
     <div>
-      <h1>{movie.title}</h1>
+      <h1>{movie.title || "I ain't go no movie!"}</h1>
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { LoaderFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { ClientLoaderFunctionArgs, useLoaderData } from "@remix-run/react";
 import VStackFull from "~/buildingBlockComponents/vStackFull";
 import Wrap from "~/buildingBlockComponents/wrap";
 import MovieCard from "./components/movieCard";
@@ -10,7 +9,7 @@ import FlexFull from "~/buildingBlockComponents/flexFull";
 import PaginationControls from "./components/paginationControls";
 import MoviesHeaderBar from "./components/moviesHeaderBar";
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const clientLoader = async ({ request }: ClientLoaderFunctionArgs) => {
   const url = new URL(request.url);
   const page = Number(url.searchParams.get("page")) || 1;
   const genre = url.searchParams.get("genre") || "";
@@ -23,6 +22,7 @@ export const loader: LoaderFunction = async ({ request }) => {
     throw new Response("Failed to load movies", { status: 500 });
   }
 };
+clientLoader.hydrate = true;
 
 export default function Index() {
   const { movies, page } = useLoaderData<{
