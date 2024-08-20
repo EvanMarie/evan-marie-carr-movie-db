@@ -11,8 +11,11 @@ import Wrap from "~/buildingBlockComponents/wrap";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: "Take Me to the Movies" },
+    {
+      name: "A lovely little movie database",
+      content: "Take Me to the Movies!",
+    },
   ];
 };
 
