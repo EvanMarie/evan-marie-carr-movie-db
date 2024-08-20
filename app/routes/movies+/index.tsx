@@ -9,18 +9,21 @@ import {
 import VStackFull from "~/buildingBlockComponents/vStackFull";
 import Wrap from "~/buildingBlockComponents/wrap";
 import MovieCard from "./components/movieCard";
-import { BASE_URL, fetchGenres, fetchMovies } from "~/utils/movies-api";
+import {
+  BASE_URL,
+  fetchGenreInfo,
+  fetchGenres,
+  fetchMovies,
+} from "~/utils/movies-api";
 import { MoviesResponse } from "./interfaces/movieResponse";
 import FlexFull from "~/buildingBlockComponents/flexFull";
 import PaginationControls from "./components/paginationControls";
 import MoviesHeaderBar from "./components/moviesHeaderBar";
-import { GenreResponse } from "./interfaces/genre";
+import { Genre, GenreResponse } from "./interfaces/genre";
 import Center from "~/buildingBlockComponents/center";
 import VStack from "~/buildingBlockComponents/vStack";
 import AnimatedIconButton from "~/buildingBlockComponents/animatedIconButton";
 import { TiArrowBackOutline } from "react-icons/ti";
-import HStack from "~/buildingBlockComponents/hStack";
-import { PiSmileyXEyesLight } from "react-icons/pi";
 
 /* ************************ CLIENT LOADER ************************ */
 
@@ -32,8 +35,13 @@ export const clientLoader = async ({ request }: ClientLoaderFunctionArgs) => {
   try {
     const movies = await fetchMovies(page, selectedGenre);
     const genres = await fetchGenres();
+    const selectedGenreId =
+      selectedGenre !== "" &&
+      genres.data.find((genre: Genre) => genre?.title === selectedGenre)?.id;
+
+    const genreInfo = await fetchGenreInfo(selectedGenreId);
     return json(
-      { movies, page, genres },
+      { movies, genres, genreInfo },
       { headers: { "Cache-Control": "max-age=300" } }
     );
   } catch (error) {
@@ -46,13 +54,15 @@ clientLoader.hydrate = true;
 /* ************************ INDEX COMPONENT  ************************ */
 
 export default function Index() {
-  const { movies, page, genres } = useLoaderData<{
+  /* ************************ LOADER DATA ************************ */
+  const { movies, genres, genreInfo } = useLoaderData<{
     movies: MoviesResponse;
     page: number;
     genres: GenreResponse;
+    genreInfo: Genre;
   }>();
 
-  const navigate = useNavigate();
+  /* ************************ NAVIGATE & SEARCH PARAMS ************************ */
   const [searchParams, setSearchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(searchParams.get("page") || 1);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -130,16 +140,25 @@ export default function Index() {
         setCurrentPage={setCurrentPage}
       />
 
-      {/* ****************** MOVIE CARDS ****************** */}
       <FlexFull
         className="h-[100svh] py-[5.5svh] overflow-y-auto overflow-x-hidden hide-scrollbar"
         ref={containerRef}
       >
-        <Wrap className="justify-evenly gap-1vh md:gap-2vh py-1.5vh h-fit">
-          {movies.data.map((movie, index) => (
-            <MovieCard key={movie.id} movie={movie} index={index} />
-          ))}
-        </Wrap>
+        <VStackFull>
+          {selectedGenre && (
+            <FlexFull className="justify-center py-1vh">
+              <h2 className="blockLetters text-yellow-300 textFogXs">
+                {selectedGenre}
+              </h2>
+            </FlexFull>
+          )}
+          {/* ****************** MOVIE CARDS ****************** */}
+          <Wrap className="justify-evenly gap-1vh md:gap-2vh py-1.5vh h-fit">
+            {movies.data.map((movie, index) => (
+              <MovieCard key={movie.id} movie={movie} index={index} />
+            ))}
+          </Wrap>{" "}
+        </VStackFull>
       </FlexFull>
 
       {/* ****************** PAGINATION FOOTER ****************** */}

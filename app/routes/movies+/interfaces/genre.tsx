@@ -10,3 +10,9 @@ export interface GenreResponse {
   data: Genre[]; // Array of genres
   totalPages: number; // Total number of pages
 }
+
+export interface GenreInfo {
+  id: string;
+  title: string;
+  totalMovies: number;
+}

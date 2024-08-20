@@ -55,3 +55,17 @@ export const fetchGenres = async () => {
     throw new Error('Failed to fetch genres');
   }
 };
+
+// --------------------------- GENRE INFORMATION --------------------------- //
+
+export const fetchGenreInfo = async (id: string) => {
+  try {
+    const response = await fetch(`${BASE_URL}/movies/genres/${id}`, {
+      headers,
+    });
+    return await response.json();
+  } catch (error: any) {
+    console.error('Error fetching genre:', error.response?.data || error.message || error);
+    throw new Error('Failed to fetch genre');
+  }
+}
