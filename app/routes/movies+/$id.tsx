@@ -16,6 +16,7 @@ import BouncingDots from "~/buildingBlockComponents/bouncingDots";
 import { ExpandableImage } from "~/buildingBlockComponents/expandableImage";
 import Transition from "~/buildingBlockComponents/transition";
 import { CloseButton } from "~/buildingBlockComponents/closeButton";
+import VStack from "~/buildingBlockComponents/vStack";
 
 export const clientLoader = async ({ params }: ClientLoaderFunctionArgs) => {
   const { id: movieId } = params;
@@ -30,22 +31,38 @@ export default function ViewMovie() {
   const movie = useLoaderData<MovieById>();
   const navigate = useNavigate();
   return (
-    <Transition className="w-full relatie" type="fadeSlideInRight">
-      <CloseButton
-        onClose={() => navigate("/movies")}
-        className="absolute top-1vh right-1vh"
-      />
-      <VStackFull className="p-1vh">
-        <FlexFull className="flex-col md:flex-row">
-          <ExpandableImage
-            src={movie.posterUrl || imageFallback}
-            caption={movie.title}
-          />
-          <h1>{movie.title || "I ain't go no movie!"}</h1>
+    <FlexFull className="h-[100svh] relative sm:p-1vh md:p-1.5vh bg-200-radial4op25">
+      <Transition className="w-full sm:p-1vh" type="fadeSlideInRight">
+        <FlexFull className="bg-500-radial6op50 sm:border-900-md sm:shadowNarrowNormal h-full ">
+          <Box className="absolute top-1vh right-1vh sm:top-2vh sm:right-2vh">
+            <CloseButton onClose={() => navigate("/movies")} />
+          </Box>
+          <FlexFull className="h-full overflow-y-auto overflow-x-hidden insetShadowXxl">
+            <VStackFull className="p-1vh sm:p-3vh ">
+              <FlexFull className="flex-col lg:flex-row items-center justify-center">
+                <ExpandableImage
+                  src={movie.posterUrl || imageFallback}
+                  caption={movie.title}
+                />
+                <VStackFull className="p-1vh">
+                  <h1>{movie.title || "I ain't go no movie!"}</h1>
+                  <p>{movie.summary || "No overview available."}</p>
+                  <p>{movie.rating || "No rating available."}</p>
+                  <p>{movie.duration || "No duration available."}</p>
+                  <p>{movie.datePublished || "No date available."}</p>
+                  <p>{movie.directors || "No directors available."}</p>
+                  <p>{movie.mainActors || "No actors available."}</p>
+                  <p>{movie.writers || "No writers available."}</p>
+                  {movie.genres.map((genre, index) => (
+                    <p key={index}>{genre.title}</p>
+                  ))}
+                </VStackFull>
+              </FlexFull>
+            </VStackFull>
+          </FlexFull>
         </FlexFull>
-        <p>{movie.summary || "No overview available."}</p>
-      </VStackFull>
-    </Transition>
+      </Transition>
+    </FlexFull>
   );
 }
 // id: string;
