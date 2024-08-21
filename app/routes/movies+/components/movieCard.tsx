@@ -66,7 +66,7 @@ export default function MovieCard({
                     onLoad={handleImageLoad}
                   />
                 </Center>
-                <Text className="text-2vh text-yellow-300 text-stroke-5-200 textShadow text-center">
+                <Text className="text-2vh text-yellow-300 text-stroke-5-200 textShadow text-center leading-[3.5vh]">
                   {movie.title}
                 </Text>
               </VStackFull>

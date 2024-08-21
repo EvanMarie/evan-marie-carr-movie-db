@@ -20,6 +20,7 @@ import { TiArrowBackOutline } from "react-icons/ti";
 import Transition from "~/buildingBlockComponents/transition";
 import Image from "~/buildingBlockComponents/image";
 import { MoviesResponse } from "./interfaces/movie";
+import NoMoviesFound from "./components/noMoviesFount";
 
 /* ************************ CLIENT LOADER ************************ */
 
@@ -123,44 +124,23 @@ export default function Index() {
 
       {/* ************************* NO MOVIES FOUND ************************* */}
       {!movies || !Array.isArray(movies.data) || movies.data.length === 0 ? (
-        <Transition>
-          <Center className="h-[100svh] w-100vw">
-            <VStack gap="gap-5vh">
-              <Image
-                src="/images/movie-reel-yellow.webp"
-                alt="Movie Reel"
-                className="w-20vh rounded-full"
-              />
-              <h2 className="blockLetters text-yellow-300 textFogXs">
-                Oh, Snippity SNAPS!
-              </h2>
-              <h2 className="blockLetters text-yellow-300 textFogXs">
-                No Movies Found
-              </h2>
-              <AnimatedIconButton
-                iconRotation="group-hover:-rotate-30"
-                iconLeft={TiArrowBackOutline}
-                text="Let's Try This Again"
-                onClick={() => setSearchQuery("")}
-              />{" "}
-            </VStack>
-          </Center>
-        </Transition>
+        <NoMoviesFound setSearchQuery={setSearchQuery} />
       ) : (
         <FlexFull
           className="h-[100svh] py-[5.5svh] overflow-y-auto overflow-x-hidden hide-scrollbar"
           ref={containerRef}
         >
           <VStackFull>
+            {/* ************************* SELECTED GENRE ************************* */}
             {selectedGenre && (
               <FlexFull className="justify-center py-1vh">
-                <h2 className="blockLetters text-yellow-300 textFogXs">
+                <h1 className="blockLetters text-yellow-300 textFogXs">
                   {selectedGenre}
-                </h2>
+                </h1>
               </FlexFull>
             )}
             {/* ************************* MOVIE CARDS ************************* */}
-            <Wrap className="justify-evenly gap-1vh md:gap-2vh py-1.5vh h-fit">
+            <Wrap className="justify-evenly gap-1vh md:gap-2vh pt-1.5vh pb-5vh h-fit">
               {movies.data.map((movie, index) => (
                 <MovieCard key={movie.id} movie={movie} index={index} />
               ))}

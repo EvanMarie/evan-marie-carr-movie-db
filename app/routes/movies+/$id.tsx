@@ -5,7 +5,6 @@ import {
   useSearchParams,
 } from "@remix-run/react";
 import { fetchMovieById } from "~/utils/movies-api";
-import { MovieById } from "./interfaces/movieById";
 import FlexFull from "~/buildingBlockComponents/flexFull";
 import VStackFull from "~/buildingBlockComponents/vStackFull";
 import Box from "~/buildingBlockComponents/box";
@@ -19,6 +18,7 @@ import FormatDuration from "~/utils/formatDuration";
 import FilmInfoLabelValue from "./components/filmInfoLabelValue";
 import AnimatedIconButton from "~/buildingBlockComponents/animatedIconButton";
 import useEscapeKey from "~/hooks/useEscapePress";
+import { MovieById } from "./interfaces/movie";
 
 export const clientLoader = async ({ params }: ClientLoaderFunctionArgs) => {
   const { id: movieId } = params;
