@@ -56,6 +56,7 @@ bg-gradient-to-r from-yellow-300/80 via-yellow-400/80 to-yellow-300/80 shadowNar
           to={link}
           className={`group ${isDisabled && "opacity-30"}`}
           target={target}
+          rel="prefetch"
         >
           <motion.button
             disabled={isDisabled}
