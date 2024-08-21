@@ -27,7 +27,6 @@ export const fetchMovies = async (page = 1, genre?: string, search?: string) => 
   }
 };
 
-
       // --------------------------- MOVIE BY ID --------------------------- //
 
 export const fetchMovieById = async (id: string) => {

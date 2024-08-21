@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Flex from "~/buildingBlockComponents/flex";
 import VStackFull from "~/buildingBlockComponents/vStackFull";
 import Text from "~/buildingBlockComponents/text";
 import Image from "~/buildingBlockComponents/image";
@@ -11,7 +10,7 @@ import BouncingDots from "~/buildingBlockComponents/bouncingDots";
 import { Movie } from "../interfaces/movie";
 import Transition from "~/buildingBlockComponents/transition";
 import { motion } from "framer-motion";
-import { NavLink, useLocation } from "@remix-run/react";
+import { NavLink } from "@remix-run/react";
 
 export default function MovieCard({
   movie,

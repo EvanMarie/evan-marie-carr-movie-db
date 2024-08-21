@@ -9,13 +9,10 @@ import HStack from "~/buildingBlockComponents/hStack";
 import HStackFull from "~/buildingBlockComponents/hStackFull";
 import Text from "~/buildingBlockComponents/text";
 import Tooltip from "~/buildingBlockComponents/tooltip";
-import { MoviesResponse } from "../interfaces/movieResponse";
 import Transition from "~/buildingBlockComponents/transition";
 
 export default function PaginationControls({
   currentPage,
-  prevPage,
-  nextPage,
   totalPages,
   numResults,
   onFirstPage,
@@ -24,8 +21,6 @@ export default function PaginationControls({
   onLastPage,
 }: {
   currentPage: number;
-  prevPage: number;
-  nextPage: number;
   totalPages: number;
   numResults: number;
   onFirstPage: () => void;

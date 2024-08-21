@@ -1,4 +1,5 @@
 import { NavLink, useSearchParams } from "@remix-run/react";
+import { useEffect } from "react";
 import AnimatedText from "~/buildingBlockComponents/animatedText";
 import Box from "~/buildingBlockComponents/box";
 import HStack from "~/buildingBlockComponents/hStack";
@@ -37,6 +38,13 @@ export default function MoviesHeaderBar({
   const genresWithoutSelected = genreOptions.filter(
     (genre) => genre !== selectedGenre
   );
+
+  // Ensure that search input reflects the current searchQuery state
+  useEffect(() => {
+    if (searchParams.get("search") === "") {
+      setSearchQuery("");
+    }
+  }, [searchParams, setSearchQuery]);
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -78,7 +86,7 @@ export default function MoviesHeaderBar({
         {/* *********************** SEARCH INPUT *********************** */}
         <Flex className="hidden xl:flex h-fit">
           <form onSubmit={handleSearchSubmit}>
-            <HStack className="h-fit items-center">
+            <HStack className="h-fit items-center" gap="gap-2vh">
               <Text className="text-yellow-300 text-nowrap text-stroke-5-200 text-lg textShadow">
                 Search Titles
               </Text>
@@ -86,7 +94,8 @@ export default function MoviesHeaderBar({
                 name="search"
                 className="w-30vh"
                 placeholder="Search by movie title"
-                defaultValue={searchQuery !== undefined ? searchQuery : ""}
+                value={searchQuery || ""}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
               <AnimatedIconButton
                 type="submit"

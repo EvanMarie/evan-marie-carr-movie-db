@@ -9,7 +9,6 @@ import VStackFull from "~/buildingBlockComponents/vStackFull";
 import Wrap from "~/buildingBlockComponents/wrap";
 import MovieCard from "./components/movieCard";
 import { fetchGenres, fetchMovies } from "~/utils/movies-api";
-import { MoviesResponse } from "./interfaces/movieResponse";
 import FlexFull from "~/buildingBlockComponents/flexFull";
 import PaginationControls from "./components/paginationControls";
 import MoviesHeaderBar from "./components/moviesHeaderBar";
@@ -20,6 +19,7 @@ import AnimatedIconButton from "~/buildingBlockComponents/animatedIconButton";
 import { TiArrowBackOutline } from "react-icons/ti";
 import Transition from "~/buildingBlockComponents/transition";
 import Image from "~/buildingBlockComponents/image";
+import { MoviesResponse } from "./interfaces/movie";
 
 /* ************************ CLIENT LOADER ************************ */
 
@@ -43,8 +43,6 @@ export const clientLoader = async ({ request }: ClientLoaderFunctionArgs) => {
   }
 };
 clientLoader.hydrate = true;
-
-/* ************************ INDEX COMPONENT  ************************ */
 
 export default function Index() {
   /* ************************ LOADER DATA ************************ */
@@ -72,7 +70,6 @@ export default function Index() {
     0
   );
 
-  console.log("MOVIES:", movies);
   const numResults =
     searchQuery !== ""
       ? movies.data.length
@@ -178,8 +175,6 @@ export default function Index() {
         onNextPage={() => setCurrentPage(nextPage)}
         onLastPage={() => setCurrentPage(movies.totalPages)}
         currentPage={Number(currentPage)}
-        prevPage={Number(prevPage)}
-        nextPage={Number(nextPage)}
         totalPages={movies.totalPages}
         numResults={numResults || 0}
       />
