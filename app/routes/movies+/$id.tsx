@@ -30,8 +30,7 @@ clientLoader.hydrate = true;
 export default function ViewMovie() {
   const movie = useLoaderData<MovieById>();
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const from = searchParams.get("from") || "";
+
   useEscapeKey(() => navigate(-1));
   return (
     <FlexFull className="h-[100svh] relative lg:p-1.5vh bg-yellow-200/80 bg-radial4op25 rounded-none lg:rounded-[1vh]">

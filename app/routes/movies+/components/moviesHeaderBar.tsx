@@ -39,7 +39,9 @@ export default function MoviesHeaderBar({
     (genre) => genre !== selectedGenre
   );
 
-  // Ensure that search input reflects the current searchQuery state
+        {
+          /* *********************** CURRENT SEARCH *********************** */
+        }
   useEffect(() => {
     if (searchParams.get("search") === "") {
       setSearchQuery("");

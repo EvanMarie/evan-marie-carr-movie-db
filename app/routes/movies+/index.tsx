@@ -13,12 +13,6 @@ import FlexFull from "~/buildingBlockComponents/flexFull";
 import PaginationControls from "./components/paginationControls";
 import MoviesHeaderBar from "./components/moviesHeaderBar";
 import { Genre, GenreResponse } from "./interfaces/genre";
-import Center from "~/buildingBlockComponents/center";
-import VStack from "~/buildingBlockComponents/vStack";
-import AnimatedIconButton from "~/buildingBlockComponents/animatedIconButton";
-import { TiArrowBackOutline } from "react-icons/ti";
-import Transition from "~/buildingBlockComponents/transition";
-import Image from "~/buildingBlockComponents/image";
 import { MoviesResponse } from "./interfaces/movie";
 import NoMoviesFound from "./components/noMoviesFount";
 
