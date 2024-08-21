@@ -6,7 +6,7 @@
 
 You can view the live version of the "Take Me to the Movies" application here:
 
-[Take Me to the Movies - Live Deployment](https://evan-marie-carr-movie-db.fly.dev/)`
+[Take Me to the Movies - Live Deployment](https://evan-marie-carr-movie-db.fly.dev/)
 
 ---
 
