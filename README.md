@@ -1,6 +1,8 @@
 # Take Me to the Movies
 
+<br>
 <div style="display: flex; justify-content: center; width: 100%;"> <div style="text-align: center;"> <img src="https://mhejreuxaxxodkdlfcoq.supabase.co/storage/v1/render/image/public/darkVioletPublic/various/movie-db/splashscreen.webp" alt="Splash Screen" width="800" /> <p><em>Figure 1:  Take Me To The Movies: Splash Screen</em></p> </div> </div>
+<br>
 
 ## Deployment
 
@@ -36,7 +38,9 @@ You can view the live version of the "Take Me to the Movies" application here:
 
 **Take Me to the Movies** is a fully responsive, feature-rich web application built to demonstrate proficiency in modern web development. This app allows users to search, browse, and explore a collection of movies, with an emphasis on clear functionality and user experience, focusing on the effective use of APIs, state management, and UI/UX design.
 
+<br>
 <div style="display: flex; justify-content: center; width: 100%;"> <div style="text-align: center;"> <img src="https://mhejreuxaxxodkdlfcoq.supabase.co/storage/v1/render/image/public/darkVioletPublic/various/movie-db/initial-view.webp" alt="Initial View" width="800" /> <p><em>Figure 1:  Take Me To The Movies: Initial View</em></p> </div> </div>
+<br>
 
 ## Key Features
 
@@ -62,7 +66,10 @@ You can view the live version of the "Take Me to the Movies" application here:
 - **Build Tools**:
   - npm for package management.
   - Remix CLI for project scaffolding.
-  - <div style="display: flex; justify-content: center; width: 100%;"> <div style="text-align: center;"> <img src="https://mhejreuxaxxodkdlfcoq.supabase.co/storage/v1/render/image/public/darkVioletPublic/various/movie-db/genre-search.webp" alt="Genre Search" width="800" /> <p><em>Figure 1:  Take Me To The Movies: Genre Search</em></p> </div> </div>
+
+<br>
+<div style="display: flex; justify-content: center; width: 100%;"> <div style="text-align: center;"> <img src="https://mhejreuxaxxodkdlfcoq.supabase.co/storage/v1/render/image/public/darkVioletPublic/various/movie-db/genre-search.webp" alt="Genre Search" width="800" /> <p><em>Figure 1:  Take Me To The Movies: Genre Search</em></p> </div> </div>
+<br>
 
 ## Architecture Overview
 
@@ -104,7 +111,9 @@ When a user selects a movie, they are taken to the details page, which provides:
 
 All API calls are centralized in `utils/movies-api.ts`, ensuring a clean and maintainable codebase. This file handles fetching movies, fetching a movie by ID, and fetching available genres, with proper error handling and authorization.
 
+<br>
 <div style="display: flex; justify-content: center; width: 100%;"> <div style="text-align: center;"> <img src="https://mhejreuxaxxodkdlfcoq.supabase.co/storage/v1/render/image/public/darkVioletPublic/various/movie-db/genre-view.webp" alt="Genre View" width="800" /> <p><em>Figure 1:  Take Me To The Movies: Genre View</em></p> </div> </div>
+<br>
 
 ## Benefits of Using Remix
 
@@ -130,13 +139,17 @@ Remix is a powerful framework that significantly enhances the development proces
 5. **Great Developer Experience**  
    Remix’s strong conventions and tight integration with React allow developers to focus more on building features rather than managing infrastructure. Features like hot reloading, easy configuration, and built-in TypeScript support contribute to a faster and more enjoyable development process.
 
+<br>
 <div style="display: flex; justify-content: center; width: 100%;"> <div style="text-align: center;"> <img src="https://mhejreuxaxxodkdlfcoq.supabase.co/storage/v1/render/image/public/darkVioletPublic/various/movie-db/scroll-progress.webp" alt="Scroll Progress" width="800" /> <p><em>Figure 1:  Take Me To The Movies: Scroll Progress</em></p> </div> </div>
+<br>
 
 ## Error Handling with Remix's ErrorBoundary
 
 In "Take Me to the Movies," robust error handling is achieved through the use of Remix's `ErrorBoundary`. This feature provides a structured way to manage unexpected errors in the application, ensuring that users are presented with a meaningful and user-friendly error message rather than a blank screen or generic browser error page.
 
+<br>
 <div style="display: flex; justify-content: center; width: 100%;"> <div style="text-align: center;"> <img src="https://mhejreuxaxxodkdlfcoq.supabase.co/storage/v1/render/image/public/darkVioletPublic/various/movie-db/no-movies-found.webp" alt="No Movies Found" width="800" /> <p><em>Figure 1:  Take Me To The Movies: No Movies Found</em></p> </div> </div>
+<br>
 
 ### Example Implementation
 
@@ -180,7 +193,9 @@ In this implementation:
 - **JavaScript errors** are caught and displayed with stack traces, helping both the developer and user understand what went wrong.
 - A fallback for unknown errors ensures that no errors go unnoticed.
 
+<br>
 <div style="display: flex; justify-content: center; width: 100%;"> <div style="text-align: center;"> <img src="https://mhejreuxaxxodkdlfcoq.supabase.co/storage/v1/render/image/public/darkVioletPublic/various/movie-db/movies-id.webp" alt="Single Movie View" width="800" /> <p><em>Figure 1:  Take Me To The Movies: Single Movie View</em></p> </div> </div>
+<br>
 
 ## Running the Project
 
@@ -208,7 +223,9 @@ npm install
 
 4. **Open your browser** and navigate to `http://localhost:3000`.
 
+<br>
 <div style="display: flex; justify-content: center; width: 100%;"> <div style="text-align: center;"> <img src="https://mhejreuxaxxodkdlfcoq.supabase.co/storage/v1/render/image/public/darkVioletPublic/various/movie-db/expanded-movie-image.webp" alt="Expanded Movie Image" width="800" /> <p><em>Figure 1:  Take Me To The Movies: Expanded Movie Image</em></p> </div> </div>
+<br>
 
 ## API Documentation
 
