@@ -7,22 +7,26 @@ const headers =  {
 
 
       // --------------------------- MOVIE FETCHER --------------------------- //
-export const fetchMovies = async (page = 1, genre?: string) => {
+export const fetchMovies = async (page = 1, genre?: string, search?: string) => {
   const numMovies = 36;
   try {
-    const params: any = { page };
+    const params: any = { page, limit: numMovies };
     if (genre) params.genre = genre;
-    params.limit = numMovies;
+    if (search) params.search = search;
 
-    const response = await fetch(`${BASE_URL}/movies?page=${page}&limit=${numMovies}&genre=${genre}`, {
-      headers,
-    });
+    const response = await fetch(
+      `${BASE_URL}/movies?page=${page}&limit=${numMovies}${genre ? `&genre=${genre}` : ''}${search ? `&search=${search}` : ''}`,
+      {
+        headers,
+      }
+    );
     return await response.json();
   } catch (error: any) {
     console.error('Error fetching movies:', error.response?.data || error.message || error);
     throw new Error('Failed to fetch movies');
   }
 };
+
 
       // --------------------------- MOVIE BY ID --------------------------- //
 
@@ -56,16 +60,3 @@ export const fetchGenres = async () => {
   }
 };
 
-// --------------------------- GENRE INFORMATION --------------------------- //
-
-export const fetchGenreInfo = async (id: string) => {
-  try {
-    const response = await fetch(`${BASE_URL}/movies/genres/${id}`, {
-      headers,
-    });
-    return await response.json();
-  } catch (error: any) {
-    console.error('Error fetching genre:', error.response?.data || error.message || error);
-    throw new Error('Failed to fetch genre');
-  }
-}

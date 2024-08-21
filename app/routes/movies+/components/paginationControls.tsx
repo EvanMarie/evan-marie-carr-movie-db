@@ -75,10 +75,15 @@ export default function PaginationControls({
 
       {/* ****************** NUM RESULTS & CURRENT PAGE ****************** */}
 
-      <Text className={textStyles}>Results: {numResults}</Text>
-      <Text className={textStyles}>
-        Page {currentPage} of {totalPages}
-      </Text>
+      {numResults > 0 && (
+        <Text className={textStyles}>Results: {numResults}</Text>
+      )}
+      {numResults > 0 && (
+        <Text className={textStyles}>
+          Page {currentPage} of {totalPages}
+        </Text>
+      )}
+      {numResults === 0 && <Text className={textStyles}>No Results Found</Text>}
 
       <Transition className="overflow-visible">
         <HStack className="pt-0.5vh" gap="gap-1.5vh md:gap-2.5vh">

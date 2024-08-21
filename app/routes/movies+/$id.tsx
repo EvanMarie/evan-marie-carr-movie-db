@@ -18,6 +18,7 @@ import FilmInfoWrap from "./components/filmInfoWrap";
 import FormatDuration from "~/utils/formatDuration";
 import FilmInfoLabelValue from "./components/filmInfoLabelValue";
 import AnimatedIconButton from "~/buildingBlockComponents/animatedIconButton";
+import useEscapeKey from "~/hooks/useEscapePress";
 
 export const clientLoader = async ({ params }: ClientLoaderFunctionArgs) => {
   const { id: movieId } = params;
@@ -31,7 +32,7 @@ export default function ViewMovie() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const from = searchParams.get("from") || "";
-
+  useEscapeKey(() => navigate(-1));
   return (
     <FlexFull className="h-[100svh] relative lg:p-1.5vh bg-yellow-200/80 bg-radial4op25 rounded-none lg:rounded-[1vh]">
       <Transition

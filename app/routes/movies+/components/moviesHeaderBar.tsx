@@ -1,4 +1,4 @@
-import { NavLink, useParams, useSearchParams } from "@remix-run/react";
+import { NavLink, useSearchParams } from "@remix-run/react";
 import AnimatedText from "~/buildingBlockComponents/animatedText";
 import Box from "~/buildingBlockComponents/box";
 import HStack from "~/buildingBlockComponents/hStack";
@@ -11,21 +11,26 @@ import { motion } from "framer-motion";
 import Input from "~/buildingBlockComponents/input";
 import Flex from "~/buildingBlockComponents/flex";
 import Text from "~/buildingBlockComponents/text";
+import AnimatedIconButton from "~/buildingBlockComponents/animatedIconButton";
+import { FaSearch } from "react-icons/fa";
 
 export default function MoviesHeaderBar({
   scrollRef,
   genres,
   setSelectedGenre,
   setCurrentPage,
+  searchQuery,
+  setSearchQuery,
 }: {
   scrollRef: React.RefObject<HTMLDivElement>;
   genres: Genre[];
   setSelectedGenre: (genre: string) => void;
   setCurrentPage: (page: number) => void;
+  searchQuery?: string;
+  setSearchQuery: (query: string) => void;
 }) {
   const [searchParams] = useSearchParams();
   const selectedGenre = searchParams.get("genre") || "All Genres";
-  // Convert genres to an array of genre titles for the options menu
   const genreOptions = genres.map((genre) => genre.title);
   genreOptions.unshift("All Genres");
 
@@ -33,9 +38,18 @@ export default function MoviesHeaderBar({
     (genre) => genre !== selectedGenre
   );
 
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const formData = new FormData(e.target as HTMLFormElement);
+    const searchQuery = formData.get("search")?.toString() || "";
+    setSearchQuery(searchQuery);
+    setCurrentPage(1); // Reset to first page when searching
+  };
+
   return (
     <>
       <HStackFull className="fixed inset-0 h-[5svh] justify-between items-center bg-col-880 bg-diagonal3op75 rounded-none z-50 px-1vh">
+        {/* *********************** LOGO AND NAME *********************** */}
         <NavLink to="/">
           <HStack
             className="items-center hover:cursor-pointer"
@@ -60,14 +74,33 @@ export default function MoviesHeaderBar({
             />
           </HStack>
         </NavLink>
+
+        {/* *********************** SEARCH INPUT *********************** */}
         <Flex className="hidden xl:flex h-fit">
-          <HStack className="h-fit items-center">
-            <Text className="text-yellow-300 text-nowrap text-stroke-7-200 text-lg">
-              Search Title
-            </Text>
-            <Input className="w-20vh" />
-          </HStack>
+          <form onSubmit={handleSearchSubmit}>
+            <HStack className="h-fit items-center">
+              <Text className="text-yellow-300 text-nowrap text-stroke-5-200 text-lg textShadow">
+                Search Titles
+              </Text>
+              <Input
+                name="search"
+                className="w-30vh"
+                placeholder="Search by movie title"
+                defaultValue={searchQuery !== undefined ? searchQuery : ""}
+              />
+              <AnimatedIconButton
+                type="submit"
+                text=""
+                iconLeft={FaSearch}
+                onClick={() => {
+                  setSelectedGenre("");
+                }}
+              />
+            </HStack>
+          </form>
         </Flex>
+
+        {/* *********************** GENRE SELECT *********************** */}
         <HoverMenu mainText={selectedGenre || "All Genres"} className="w-20vh">
           {genresWithoutSelected.map((genre, index) => (
             <motion.button
